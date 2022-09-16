@@ -15,8 +15,9 @@ SQL_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
 engine = create_engine(SQL_URI, echo=True)
 Session = sessionmaker(bind=engine)
 
+
 class GameRow(Base):
-    __tablename__ = "games"
+    __tablename__ = "testing_games"
 
     id = Column(Integer, primary_key=True)
     user = Column(String(64))

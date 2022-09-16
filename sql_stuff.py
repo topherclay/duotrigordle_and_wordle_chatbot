@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Boolean, Float
+from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Boolean, Float, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
@@ -25,6 +25,7 @@ class GameRow(Base):
     guesses_til_win = Column(Integer)
     time = Column(Float)
     board_number = Column(Integer)
+    UniqueConstraint(user, board_number, name="one_per_day")
 
 
 
@@ -45,7 +46,4 @@ async def commit_game_to_db(game: SingleGame):
     return "Added to database."
 
 
-async def print_tables():
-    connection = engine.connect()
-    print(connection)
-    print(engine.table_names())
+

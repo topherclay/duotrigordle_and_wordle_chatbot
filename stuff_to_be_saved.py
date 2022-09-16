@@ -14,6 +14,7 @@ class SingleGame:
         self.guesses_til_win = None
         self.is_a_won_game = None
         self.time = None
+        self.time_as_seconds = None
         self.parse_full_string(full_string)
         self.turn_events = None
         self.get_raw_scores(full_string)
@@ -68,6 +69,7 @@ class SingleGame:
         as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second, microseconds=as_date.microsecond)
         print(as_delta)
         print(as_delta.seconds)
+        self.time_as_seconds = float(as_delta.seconds + as_delta.microseconds)
 
 
 

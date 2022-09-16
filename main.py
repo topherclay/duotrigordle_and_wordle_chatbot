@@ -40,7 +40,7 @@ async def on_message(message):
         print(str(game))
         await message.channel.send(reply)
         await message.channel.send(str(game))
-        print(game.turn_time_to_seconds())
+        game.turn_time_to_seconds()
 
 
 client.run(client_token)

@@ -41,7 +41,7 @@ https://duotrigordle.com/"""
 
 
 def get_scores_only(original_string):
-    abridged = 0
+    abridged = None
     start_of_scores = None
     end_of_scores = None
     for index, line in enumerate(original_string.split("\n")):
@@ -51,6 +51,10 @@ def get_scores_only(original_string):
                 break
 
         if "https://duotrigordle.com/" in line:
+            end_of_scores = index
+
+
+        if start_of_scores and " " not in line:
             end_of_scores = index
 
 

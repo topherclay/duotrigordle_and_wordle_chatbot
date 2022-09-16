@@ -63,7 +63,7 @@ class SingleGame:
     def turn_time_to_seconds(self):
         time = self.time
 
-        as_date = datetime.datetime.strptime(time, "%M:%S:%f")
+        as_date = datetime.datetime.strptime(time, "%M:%S.%f")
 
         as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second)
         print(as_delta)

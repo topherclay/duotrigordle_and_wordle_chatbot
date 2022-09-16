@@ -36,8 +36,8 @@ async def on_message(message):
     if "Daily Duotrigordle" in message.content:
         reply = await parsing_stuff.main_parse(message.content)
         game = await stuff_to_be_saved.make_class(message.content)
-        game.user = str(client.user)
-        print(reply)
+        game.user = str(message.author)
+        print(str(game))
         await message.channel.send(reply)
         await message.channel.send(str(game))
 

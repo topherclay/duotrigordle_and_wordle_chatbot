@@ -181,18 +181,15 @@ def add_ticks(message):
 
 async def main_parse(orig_string):
 
-    try:
-        raw_scores = get_scores_only(orig_string)
 
-        turn_events = turn_scores_into_turns(raw_scores)
+    raw_scores = get_scores_only(orig_string)
 
-        grid = make_list_be_grid(turn_events)
-        grid = emojify_a_string(grid)
-        grid = add_turn_labels(grid)
-        grid = add_ticks(grid)
-    except AttributeError as e:
-        print(f"original string was:\n{orig_string}")
-        print(e)
+    turn_events = turn_scores_into_turns(raw_scores)
+
+    grid = make_list_be_grid(turn_events)
+    grid = emojify_a_string(grid)
+    grid = add_turn_labels(grid)
+    grid = add_ticks(grid)
 
 
     return grid

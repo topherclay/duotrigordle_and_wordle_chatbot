@@ -17,10 +17,10 @@ class GameRow(Base):
     __tablename__ = "games"
 
     id = Column(Integer, primary_key=True)
-    user = Column(String)
+    user = Column(String(64))
     is_a_won_game = Column(Boolean)
     guesses_til_win = Column(Integer)
-    time_til_win = Column(String)
+    time_til_win = Column(String(32))
 
 
 

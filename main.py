@@ -32,10 +32,10 @@ async def on_message(message):
 
     if "Daily Duotrigordle" in message.content:
         reply = await parsing_stuff.main_parse(message.content)
-        name, date = await stuff_to_be_saved.make_class(message.content)
+        game = await stuff_to_be_saved.make_class(message.content)
         print(reply)
         await message.channel.send(reply)
-        print(f"{name} \n {date}")
+        print(game)
 
 
 client.run(client_token)

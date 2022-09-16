@@ -13,7 +13,7 @@ class SingleGame:
         self.board_number = None
         self.guesses_til_win = None
         self.is_a_won_game = None
-        self.time_til_win = None
+        self.time = None
         self.parse_full_string(full_string)
         self.turn_events = None
         self.get_raw_scores(full_string)
@@ -46,7 +46,7 @@ class SingleGame:
         self.board_number = board_number
         self.guesses_til_win = guesses_til_win
         self.is_a_won_game = is_a_won_game
-        self.time_til_win = time
+        self.time = time
 
 
 

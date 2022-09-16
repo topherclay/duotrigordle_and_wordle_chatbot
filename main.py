@@ -40,7 +40,8 @@ async def on_message(message):
         print(str(game))
         await message.channel.send(reply)
         await message.channel.send(str(game))
-        await message.channel.send(sql_stuff.commit_game_to_db(game))
+        commit_result = await sql_stuff.commit_game_to_db(game)
+        await message.channel.send(commit_result)
 
 
 

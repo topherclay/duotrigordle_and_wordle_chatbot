@@ -1,3 +1,4 @@
+import sqlalchemy.exc
 from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Boolean, Float, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -35,15 +36,19 @@ Base.metadata.create_all(engine)
 async def commit_game_to_db(game: SingleGame):
     session = Session()
 
-    to_be_added = GameRow(user=game.user,
-                          is_a_won_game=game.is_a_won_game,
-                          guesses_til_win=game.guesses_til_win,
-                          time=game.time_as_seconds,
-                          board_number=int(game.board_number))
+    try:
+        to_be_added = GameRow(user=game.user,
+                              is_a_won_game=game.is_a_won_game,
+                              guesses_til_win=game.guesses_til_win,
+                              time=game.time_as_seconds,
+                              board_number=int(game.board_number))
 
-    session.add(to_be_added)
-    session.commit()
-    return "Added to database."
+        session.add(to_be_added)
+        session.commit()
+    except sqlalchemy.exc.IntegrityError:
+        return "This was not added to the database due to a duplicate entry already existing."
+
+    return "This was added to database."
 
 
 

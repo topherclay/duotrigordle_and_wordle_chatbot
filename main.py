@@ -4,6 +4,8 @@ import discord
 import parsing_stuff
 import os
 from dotenv import load_dotenv
+import stuff_to_be_saved
+
 
 load_dotenv()
 
@@ -30,8 +32,10 @@ async def on_message(message):
 
     if "Daily Duotrigordle" in message.content:
         reply = await parsing_stuff.main_parse(message.content)
+        name, date = await stuff_to_be_saved.make_class(message.content)
         print(reply)
         await message.channel.send(reply)
+        await message.channel.send(f"{name} \n {date}")
 
 
 client.run(client_token)

@@ -64,4 +64,11 @@ class SingleGame:
 
 
     def __repr__(self):
-        return str(self.__dict__.items())
+        representation = "```"
+
+        ignorables = "turn_events"
+        for key, value in self.__dict__.items():
+            new_line = f"{key:^20} : {value:^10}\n"
+            if key not in ignorables:
+                representation += new_line
+        return representation

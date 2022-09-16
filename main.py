@@ -39,7 +39,7 @@ async def on_message(message):
         game.user = str(client.user)
         print(reply)
         await message.channel.send(reply)
-        print(game)
+        await message.channel.send(str(game))
 
 
 client.run(client_token)

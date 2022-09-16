@@ -64,4 +64,4 @@ class SingleGame:
 
 
     def __repr__(self):
-        return str(self.__dict__)
+        return str(self.__dict__.items())

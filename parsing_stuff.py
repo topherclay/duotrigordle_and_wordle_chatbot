@@ -188,6 +188,7 @@ def add_ticks(message):
 
 
 async def main_parse(orig_string):
+    # adding this extra nonsense line at the end makes it easier to find the true last line.
     orig_string = orig_string + "\nx"
 
     raw_scores = get_scores_only(orig_string)

@@ -18,6 +18,7 @@ class SingleGame:
         self.parse_full_string(full_string)
         self.turn_events = None
         self.get_raw_scores(full_string)
+        self.turn_time_to_seconds()
 
 
 
@@ -67,8 +68,6 @@ class SingleGame:
         as_date = datetime.datetime.strptime(time, "%M:%S.%f")
 
         as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second, microseconds=as_date.microsecond)
-        print(as_delta)
-        print(as_delta.seconds)
         self.time_as_seconds = float(as_delta.seconds + as_delta.microseconds)
 
 

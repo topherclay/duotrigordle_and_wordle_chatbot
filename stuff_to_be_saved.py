@@ -10,7 +10,7 @@ async def make_class(full_string):
 class SingleGame:
     def __init__(self, full_string):
         self.user = None
-        self.board_numer = None
+        self.board_number = None
         self.guesses_til_win = None
         self.is_a_won_game = None
         self.time_til_win = None
@@ -43,7 +43,7 @@ class SingleGame:
                 time = line.split("Time: ")[1]
 
 
-        self.board_numer = board_number
+        self.board_number = board_number
         self.guesses_til_win = guesses_til_win
         self.is_a_won_game = is_a_won_game
         self.time_til_win = time

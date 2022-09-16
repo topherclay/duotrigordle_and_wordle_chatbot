@@ -62,6 +62,10 @@ def get_scores_only(original_string):
             abridged = "\n".join(original_string.split("\n")[start_of_scores:end_of_scores])
             break
 
+    if not end_of_scores:
+        abridged = "\n".join(original_string.split("\n")[start_of_scores:])
+
+
     return convert_scores_to_ints(abridged)
 
 

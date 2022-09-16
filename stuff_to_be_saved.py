@@ -65,7 +65,7 @@ class SingleGame:
 
         as_date = datetime.datetime.strptime(time, "%M:%S.%f")
 
-        as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second, milliseconds=as_date.microsecond)
+        as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second, microseconds=as_date.microsecond)
         print(as_delta)
         print(as_delta.seconds)
 

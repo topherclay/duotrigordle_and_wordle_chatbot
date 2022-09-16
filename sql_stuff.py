@@ -17,7 +17,7 @@ Session = sessionmaker(bind=engine)
 
 
 class GameRow(Base):
-    __tablename__ = "games"
+    __tablename__ = "testgames"
 
     id = Column(Integer, primary_key=True)
     user = Column(String(64))

@@ -17,14 +17,14 @@ Session = sessionmaker(bind=engine)
 
 
 class GameRow(Base):
-    __tablename__ = "testing_games"
+    __tablename__ = "games"
 
     id = Column(Integer, primary_key=True)
     user = Column(String(64))
     is_a_won_game = Column(Boolean)
     guesses_til_win = Column(Integer)
     time = Column(Float)
-    board_numer = Column(Integer)
+    board_number = Column(Integer)
 
 
 

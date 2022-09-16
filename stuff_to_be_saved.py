@@ -1,3 +1,5 @@
+import parsing_stuff
+
 
 
 async def make_class(full_string):
@@ -12,6 +14,8 @@ class SingleGame:
         self.is_a_won_game = None
         self.time_til_win = None
         self.parse_full_string(full_string)
+        self.turn_events = None
+        self.get_raw_scores(full_string)
 
 
 
@@ -48,6 +52,13 @@ class SingleGame:
 
 
         return "unknown user", full_string.split("\n")[0]
+
+
+    def get_raw_scores(self, full_string):
+        raw_scores = parsing_stuff.get_scores_only(full_string)
+        self.turn_events = parsing_stuff.turn_scores_into_turns(raw_scores)
+
+
 
 
 

@@ -9,6 +9,7 @@ async def make_class(full_string):
 
 class SingleGame:
     def __init__(self, full_string):
+        self.user = None
         self.board_numer = None
         self.guesses_til_win = None
         self.is_a_won_game = None

@@ -68,7 +68,8 @@ class SingleGame:
         as_date = datetime.datetime.strptime(time, "%M:%S.%f")
 
         as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second, microseconds=as_date.microsecond)
-        self.time_as_seconds = float(as_delta.seconds + as_delta.microseconds)
+        # self.time_as_seconds = float(as_delta.seconds + as_delta.microseconds)
+        self.time_as_seconds = as_delta.total_seconds()
 
 
 

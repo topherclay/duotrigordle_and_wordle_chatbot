@@ -68,7 +68,7 @@ class SingleGame:
 
         ignorables = "turn_events"
         for key, value in self.__dict__.items():
-            new_line = f"{key:20^} : {value:20^}\n"
+            new_line = f"{key: >20} : {value: >20}\n"
             if key not in ignorables:
                 representation += new_line
         return representation

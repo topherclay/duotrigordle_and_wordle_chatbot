@@ -1,5 +1,5 @@
 import parsing_stuff
-
+import datetime
 
 
 async def make_class(full_string):
@@ -58,6 +58,15 @@ class SingleGame:
     def get_raw_scores(self, full_string):
         raw_scores = parsing_stuff.get_scores_only(full_string)
         self.turn_events = parsing_stuff.turn_scores_into_turns(raw_scores)
+
+
+    def turn_time_to_seconds(self):
+        time = self.time
+
+        as_date = datetime.datetime.strptime(time, "%M:%S:%f")
+
+        as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second)
+        print(as_delta)
 
 
 

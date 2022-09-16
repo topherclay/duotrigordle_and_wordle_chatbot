@@ -17,7 +17,7 @@ Session = sessionmaker(bind=engine)
 
 
 class GameRow(Base):
-    __tablename__ = "testgames"
+    __tablename__ = "games"
 
     id = Column(Integer, primary_key=True)
     user = Column(String(64))
@@ -42,7 +42,7 @@ async def commit_game_to_db(game: SingleGame):
 
     session.add(to_be_added)
     session.commit()
-    return "Added"
+    return "Added to database."
 
 
 async def print_tables():

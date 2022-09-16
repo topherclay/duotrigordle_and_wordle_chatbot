@@ -34,4 +34,4 @@ Base.metadata.create_all(engine)
 async def print_tables():
     connection = engine.connect()
     print(connection)
-    print(engine.get_tables())
+    print(engine.table_names())

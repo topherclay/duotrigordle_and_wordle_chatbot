@@ -17,4 +17,9 @@ class SingleGame:
 
 
     def parse_full_string(self, full_string):
-        return "bob", full_string.split("\n")[0]
+        return "unknown user", full_string.split("\n")[0]
+
+
+
+    def __repr__(self):
+        return f"user = {self.user}"

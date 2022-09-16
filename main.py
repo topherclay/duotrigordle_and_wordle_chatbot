@@ -35,7 +35,7 @@ async def on_message(message):
         name, date = await stuff_to_be_saved.make_class(message.content)
         print(reply)
         await message.channel.send(reply)
-        await message.channel.send(f"{name} \n {date}")
+        print(f"{name} \n {date}")
 
 
 client.run(client_token)

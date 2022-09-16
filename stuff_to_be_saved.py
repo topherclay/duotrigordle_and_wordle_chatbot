@@ -9,3 +9,4 @@ class SingleGame:
         pass
 
     def parse_full_string(self, full_string):
+        pass

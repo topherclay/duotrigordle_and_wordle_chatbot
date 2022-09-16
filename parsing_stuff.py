@@ -188,7 +188,7 @@ def add_ticks(message):
 
 
 async def main_parse(orig_string):
-
+    orig_string = orig_string + "\n"
 
     raw_scores = get_scores_only(orig_string)
 

@@ -6,6 +6,8 @@ import os
 from dotenv import load_dotenv
 import stuff_to_be_saved
 
+import sql_stuff
+
 
 load_dotenv()
 

@@ -31,7 +31,7 @@ async def on_message(message):
 
 
 
-    if "Daily Duotrigordle" in message.content:
+    if message.content.startswith("Daily Duotrigordle"):
         user = message.author
         score_string = message.content
         await respond_to_score_post(user, score_string, message)

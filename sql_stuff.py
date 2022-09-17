@@ -51,4 +51,10 @@ async def commit_game_to_db(game: SingleGame):
     return "This was added to database."
 
 
+async def get_all_of_a_day():
+    session = Session()
+    result = session.query(GameRow).order_by(GameRow.board_number).get()
+
+    print(result)
+
 

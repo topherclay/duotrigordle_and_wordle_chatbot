@@ -55,6 +55,6 @@ async def get_all_of_a_day():
     session = Session()
     result = session.query(GameRow).order_by(GameRow.board_number).all()
 
-    print(result)
+    print(result[0])
 
 

@@ -1,5 +1,3 @@
-# This example requires the 'message_content' intent.
-
 import discord
 import parsing_stuff
 import os

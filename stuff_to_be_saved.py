@@ -70,7 +70,7 @@ class SingleGame:
 
         seconds, milli = seconds_and_milli.split(".")
         seconds = int(seconds)
-        milli = int(milli)/10
+        milli = int(milli)*10
 
         as_delta = datetime.timedelta(minutes=minutes, seconds=seconds, milliseconds=milli)
         self.time_as_seconds = as_delta.total_seconds()

@@ -65,11 +65,17 @@ class SingleGame:
     def turn_time_to_seconds(self):
         time = self.time
 
-        as_date = datetime.datetime.strptime(time, "%M:%S.%f")
+        minutes, seconds_and_micro = time.split(":")
+        minutes = int(minutes)
 
-        as_delta = datetime.timedelta(minutes=as_date.minute, seconds=as_date.second, microseconds=as_date.microsecond)
-        # self.time_as_seconds = float(as_delta.seconds + as_delta.microseconds)
+        seconds, micro = seconds_and_micro.split(".")
+        seconds = int(seconds)
+        micro = int(micro)
+
+        as_delta = datetime.timedelta(minutes=minutes, seconds=seconds, microseconds=micro)
         self.time_as_seconds = as_delta.total_seconds()
+
+
 
 
 

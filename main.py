@@ -28,7 +28,12 @@ async def on_message(message):
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-
+    if message.content.startswith("$user"):
+        content = message.content
+        first_line = content.split("\n")[0]
+        user = first_line.split("\n")[0]
+        score_string = message.content
+        await respond_to_score_post(user, score_string, message)
 
 
     if message.content.startswith("Daily Duotrigordle"):

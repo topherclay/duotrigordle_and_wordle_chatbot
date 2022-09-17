@@ -53,7 +53,7 @@ async def commit_game_to_db(game: SingleGame):
 
 async def get_all_of_a_day():
     session = Session()
-    result = session.query(GameRow).order_by(GameRow.board_number).one()
+    result = session.query(GameRow).order_by(GameRow.board_number).all()
 
     print(result)
 

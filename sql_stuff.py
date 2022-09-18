@@ -51,10 +51,14 @@ async def commit_game_to_db(game: SingleGame):
     return "This was added to database."
 
 
-async def get_all_of_a_day():
+def get_most_recent_board():
     session = Session()
-    result = session.query(GameRow).order_by(GameRow.board_number).all()
+    result = session.query(GameRow).order_by(sqlalchemy.desc(GameRow.board_number)).first()
+    return result
 
-    print(result[0].board_number)
+
+async def get_all_of_a_day():
+    print(get_most_recent_board())
+
 
 

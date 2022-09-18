@@ -72,10 +72,14 @@ async def get_all_of_a_day():
 
     return result_to_print
 
+
 def repr_a_row(row):
 
     user = row.user.split("#")[0]
     guesses_left = 37 - row.guesses_til_win
-    result = f"{user}\n{guesses_left}\n{row.time}"
+
+    result = f"{user}\n" \
+             f"{'Guesses to spare:':>20}  {guesses_left:<10}\n" \
+             f"{'Total seconds': >20} {row.time:<10}"
     return result
 

@@ -65,11 +65,17 @@ async def get_all_of_a_day():
         .order_by(GameRow.guesses_til_win, GameRow.time)\
         .all()
 
+    result_to_print = ""
     for game in today_only:
+        result_to_print += repr_a_row(game) + "\n"
         print(repr_a_row(game))
 
+    return result_to_print
 
 def repr_a_row(row):
-    result = f"{row.user}\n{row.guesses_til_win}\n{row.time}"
+
+    user = row.user.split("#")[0]
+    guesses_left = 37 - row.guesses_til_win
+    result = f"{user}\n{guesses_left}\n{row.time}"
     return result
 

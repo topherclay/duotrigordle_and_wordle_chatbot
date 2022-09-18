@@ -42,7 +42,9 @@ async def on_message(message):
         score_string = message.content
         await respond_to_score_post(user, score_string, message)
 
-
+    if message.content == "!today":
+        result = await sql_stuff.get_all_of_a_day()
+        await message.channel.send(result)
 
 
 async def respond_to_score_post(user, score_string, message):

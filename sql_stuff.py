@@ -71,7 +71,8 @@ async def get_all_of_a_day():
         print(repr_a_row(game, placement=placement))
 
     losing_games = session.query(GameRow)\
-        .filter(GameRow.board_number == most_recent_board_number & (not GameRow.is_a_won_game))\
+        .filter(GameRow.board_number == most_recent_board_number)\
+        .filter(not GameRow.is_a_won_game)\
         .order_by(GameRow.guesses_til_win, GameRow.time)\
         .all()
 

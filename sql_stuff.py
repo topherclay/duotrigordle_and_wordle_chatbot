@@ -60,10 +60,13 @@ async def get_all_of_a_day():
     session = Session()
     most_recent_board_number = get_most_recent_board(session=session)
 
-    today_only = session.query(GameRow).filter(GameRow.board_number == most_recent_board_number).all()
+    today_only = session.query(GameRow).filter(GameRow.board_number == most_recent_board_number).orderb_by(GameRow.guesses_til_win).all()
 
     for game in today_only:
-        print(game.__dict__)
+        print(repr_a_row(game))
 
 
+def repr_a_row(row):
+    result = f"{row.user}\n{row.guesses_til_win}\n{row.time}"
+    return result
 

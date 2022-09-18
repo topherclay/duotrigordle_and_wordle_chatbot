@@ -138,7 +138,7 @@ def add_turn_labels(non_labelled: str):
 
 
 def add_ticks(message):
-    message = "```" + message + "```"
+    message = "```\n" + message + "```"
     return message
 
 

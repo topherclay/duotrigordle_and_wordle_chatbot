@@ -44,6 +44,7 @@ async def on_message(message):
 
     if message.content == "!today":
         result = await sql_stuff.get_all_of_a_day()
+        result = "```" + result + "```"
         await message.channel.send(result)
 
 

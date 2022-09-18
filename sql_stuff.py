@@ -66,19 +66,19 @@ async def get_all_of_a_day():
         .all()
 
     result_to_print = ""
-    for game in today_only:
+    for placement, game in enumerate(today_only):
         result_to_print += repr_a_row(game) + "\n"
-        print(repr_a_row(game))
+        print(repr_a_row(game, placement=placement))
 
     return result_to_print
 
 
-def repr_a_row(row):
+def repr_a_row(row, placement=None):
 
     user = row.user.split("#")[0]
     guesses_left = 37 - row.guesses_til_win
 
-    result = f"{user}\n" \
+    result = f"{str(placement)}: {user}\n" \
              f"{' Guesses left:':<16}{guesses_left:<10}\n" \
              f"{' Total seconds:': <16}{row.time:<10}"
     return result

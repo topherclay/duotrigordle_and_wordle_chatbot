@@ -86,13 +86,13 @@ async def get_all_of_a_day():
     return result_to_print
 
 
-def repr_a_row(row, placement=None):
+def repr_a_row(row, placement="DNQ"):
 
     user = row.user.split("#")[0]
     if row.is_a_won_game:
         guesses_left = 37 - row.guesses_til_win
     else:
-        guesses_left = 0
+        guesses_left = "X"
 
 
     result = f"{str(placement)}: {user}\n" \

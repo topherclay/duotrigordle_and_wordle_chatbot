@@ -67,7 +67,7 @@ async def get_all_of_a_day():
 
     result_to_print = ""
     for placement, game in enumerate(today_only):
-        result_to_print += repr_a_row(game) + "\n"
+        result_to_print += repr_a_row(game, placement=placement+1) + "\n"
         print(repr_a_row(game, placement=placement))
 
     return result_to_print

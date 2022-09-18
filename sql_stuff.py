@@ -79,7 +79,7 @@ def repr_a_row(row):
     guesses_left = 37 - row.guesses_til_win
 
     result = f"{user}\n" \
-             f"{' Guesses to spare:':<20}.{guesses_left:<10}\n" \
-             f"{' Total seconds:': <20}.{row.time:<10}"
+             f"{' Guesses to spare:':<20}{guesses_left:<10}\n" \
+             f"{' Total seconds:': <20}{row.time:<10}"
     return result
 

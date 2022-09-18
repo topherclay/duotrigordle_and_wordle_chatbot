@@ -62,8 +62,7 @@ async def get_all_of_a_day():
 
     today_only = session.query(GameRow)\
         .filter(GameRow.board_number == most_recent_board_number)\
-        .group_by(GameRow.guesses_til_win)\
-        .order_by(GameRow.time)\
+        .order_by(GameRow.guesses_til_win, GameRow.time)\
         .all()
 
     for game in today_only:

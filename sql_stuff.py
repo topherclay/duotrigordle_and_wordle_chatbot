@@ -87,7 +87,11 @@ async def get_all_of_a_day():
 def repr_a_row(row, placement=None):
 
     user = row.user.split("#")[0]
-    guesses_left = 37 - row.guesses_til_win
+    if row.is_a_won_game:
+        guesses_left = 37 - row.guesses_til_win
+    else:
+        guesses_left = 0
+
 
     result = f"{str(placement)}: {user}\n" \
              f"{' Guesses left:':<16}{guesses_left:<10}\n" \

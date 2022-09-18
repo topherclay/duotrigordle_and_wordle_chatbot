@@ -61,7 +61,7 @@ async def get_all_of_a_day():
     most_recent_board_number = get_most_recent_board(session=session)
 
     today_only = session.query(GameRow)\
-        .filter(GameRow.board_number == most_recent_board_number)\
+        .filter(GameRow.board_number == most_recent_board_number & GameRow.is_a_won_game)\
         .order_by(GameRow.guesses_til_win, GameRow.time)\
         .all()
 
@@ -69,6 +69,17 @@ async def get_all_of_a_day():
     for placement, game in enumerate(today_only):
         result_to_print += repr_a_row(game, placement=placement+1) + "\n"
         print(repr_a_row(game, placement=placement))
+
+    losing_games = session.query(GameRow)\
+        .filter(GameRow.board_number == most_recent_board_number & (not GameRow.is_a_won_game))\
+        .order_by(GameRow.guesses_til_win, GameRow.time)\
+        .all()
+
+    for game in losing_games:
+        result_to_print += repr_a_row(game) + "\n"
+        print(repr_a_row(game))
+
+
 
     return result_to_print
 

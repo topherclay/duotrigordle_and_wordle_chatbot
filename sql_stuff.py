@@ -92,7 +92,7 @@ def repr_a_row(row, placement="DNQ"):
     if row.is_a_won_game:
         guesses_left = 37 - row.guesses_til_win
     else:
-        guesses_left = "X"
+        guesses_left = "None"
 
 
     result = f"{str(placement)}: {user}\n" \

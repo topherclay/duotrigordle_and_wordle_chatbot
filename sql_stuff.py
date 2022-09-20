@@ -47,7 +47,7 @@ async def commit_game_to_db(game: SingleGame):
         session.commit()
     except sqlalchemy.exc.IntegrityError:
         return "This was not added to the database due to a duplicate entry already existing."
-
+    session.close()
     return "This was added to database."
 
 

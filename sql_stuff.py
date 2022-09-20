@@ -82,7 +82,7 @@ async def get_all_of_a_day():
         print(repr_a_row(game))
 
 
-
+    session.close()
     return result_to_print
 
 

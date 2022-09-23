@@ -113,10 +113,10 @@ def get_top():
 
 
     rank = 1
-    result = f"#, {'user':<20} {'board':<20}\n"
+    result = f"#, {'user':<15} | {'board':<5} | {'seconds':<5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
-        result += f"{rank}: {user:<20}, {game.board_number:<20}, {game.guesses_til_win} {game.time}, \n"
+        result += f"{rank}: {user:<15} | {game.board_number:<5} | {game.time:<5} | {game.guesses_til_win} \n"
         rank += 1
     session.close()
 

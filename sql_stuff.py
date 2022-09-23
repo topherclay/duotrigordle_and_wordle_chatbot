@@ -112,10 +112,10 @@ def get_top():
         .all()
 
 
+    rank = 1
     for game in games[:10]:
-        result += f"{game.user}, {game.guesses_til_win}"
-
-
+        user = game.user.split("#")[0]
+        result += f"{rank}: {user}, {game.guesses_til_win} \n"
     session.close()
 
     return result

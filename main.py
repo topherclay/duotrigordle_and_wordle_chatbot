@@ -49,6 +49,7 @@ async def on_message(message):
     if message.content == "!top":
 
         result = sql_stuff.get_top()
+        result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
 
 

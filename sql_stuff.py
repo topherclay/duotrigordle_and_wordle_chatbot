@@ -102,7 +102,7 @@ def repr_a_row(row, placement="DNQ"):
 
 
 def get_top():
-    result = "temp top message WIP"
+
     session = Session()
 
 
@@ -113,9 +113,10 @@ def get_top():
 
 
     rank = 1
+    result = f"#, {'user':<20} {'board':<20}"
     for game in games[:10]:
         user = game.user.split("#")[0]
-        result += f"{rank}: {user}, {game.guesses_til_win} {game.time}, {game.board_number}\n"
+        result += f"{rank}: {user:<20}, {game.board_number:<20}, {game.guesses_til_win} {game.time}, \n"
         rank += 1
     session.close()
 

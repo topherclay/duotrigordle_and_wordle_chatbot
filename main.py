@@ -48,7 +48,7 @@ async def on_message(message):
 
     if message.content == "!top":
 
-        result = await sql_stuff.get_top()
+        result = sql_stuff.get_top()
         await message.channel.send(result)
 
 

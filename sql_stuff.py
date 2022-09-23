@@ -107,7 +107,7 @@ def get_top():
 
 
     games = session.query(GameRow)\
-        .order_by(GameRow.guesses_til_win)\
+        .order_by(GameRow.guesses_til_win, GameRow.time)\
         .filter(GameRow.is_a_won_game)\
         .all()
 
@@ -115,7 +115,8 @@ def get_top():
     rank = 1
     for game in games[:10]:
         user = game.user.split("#")[0]
-        result += f"{rank}: {user}, {game.guesses_til_win} \n"
+        result += f"{rank}: {user}, {game.guesses_til_win} {game.time}, {game.board_number}\n"
+        rank += 1
     session.close()
 
     return result

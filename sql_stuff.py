@@ -113,7 +113,7 @@ def get_top():
 
 
     rank = 1
-    result = f"#, {'user':<20} {'board':<20}"
+    result = f"#, {'user':<20} {'board':<20}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
         result += f"{rank}: {user:<20}, {game.board_number:<20}, {game.guesses_til_win} {game.time}, \n"

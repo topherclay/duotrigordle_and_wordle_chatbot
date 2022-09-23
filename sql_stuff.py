@@ -104,19 +104,16 @@ def repr_a_row(row, placement="DNQ"):
 def get_top():
 
     session = Session()
-
-
     games = session.query(GameRow)\
         .order_by(GameRow.guesses_til_win, GameRow.time)\
         .filter(GameRow.is_a_won_game)\
         .all()
 
-
     rank = 1
-    result = f"{'#':<3}: {'user':<12} | {'board':<5} | {'seconds':^8} | {'turns used':<5}\n"
+    result = f"{'#':<3}: {'user':<12} | {'board':^5} | {'seconds':^8} | {'turns used':<5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
-        result += f"{rank:<3}: {user:<12} | {game.board_number:<5} | {game.time:^8} | {game.guesses_til_win:<5} \n"
+        result += f"{rank:<3}: {user:<12} | {game.board_number:^5} | {game.time:^8} | {game.guesses_til_win:<5} \n"
         rank += 1
     session.close()
 

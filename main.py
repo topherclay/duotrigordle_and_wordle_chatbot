@@ -36,7 +36,6 @@ async def on_message(message):
         score_string = message.content
         await respond_to_score_post(user, score_string, message)
 
-
     if message.content.startswith("Daily Duotrigordle"):
         user = message.author
         score_string = message.content
@@ -46,6 +45,12 @@ async def on_message(message):
         result = await sql_stuff.get_all_of_a_day()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
+
+    if message.content == "!top":
+
+        result = await sql_stuff.get_top()
+        await message.channel.send(result)
+
 
 
 async def respond_to_score_post(user, score_string, message):
@@ -57,6 +62,9 @@ async def respond_to_score_post(user, score_string, message):
     await message.channel.send(str(game))
     commit_result = await sql_stuff.commit_game_to_db(game)
     await message.channel.send(commit_result)
+
+
+
 
 
 client.run(client_token)

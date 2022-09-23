@@ -100,3 +100,22 @@ def repr_a_row(row, placement="DNQ"):
              f"{' Total seconds:': <16}{row.time:<10}"
     return result
 
+
+def get_top():
+    result = "temp top message WIP"
+    session = Session()
+
+
+    games = session.query(GameRow)\
+        .order_by(GameRow.guesses_til_win)\
+        .filter(GameRow.is_a_won_game)\
+        .all()
+
+
+    for game in games[:10]:
+        result += f"{game.user}, {game.guesses_til_win}"
+
+
+    session.close()
+
+    return result

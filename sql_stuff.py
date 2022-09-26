@@ -35,7 +35,7 @@ Base.metadata.create_all(engine)
 
 async def commit_game_to_db(game: SingleGame):
     session = Session()
-
+    resulting_string = ""
     try:
         to_be_added = GameRow(user=game.user,
                               is_a_won_game=game.is_a_won_game,
@@ -45,10 +45,15 @@ async def commit_game_to_db(game: SingleGame):
 
         session.add(to_be_added)
         session.commit()
+        resulting_string = "This was added to database."
     except sqlalchemy.exc.IntegrityError:
-        return "This was not added to the database due to a duplicate entry already existing."
+        resulting_string = "This was not added to the database due to a duplicate entry already existing."
+    except Exception as e:
+        print(e)
+        resulting_string = e
     session.close()
-    return "This was added to database."
+
+    return resulting_string
 
 
 def get_most_recent_board(session):

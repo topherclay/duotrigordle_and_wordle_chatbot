@@ -66,18 +66,20 @@ class SingleGame:
         time = self.time
 
         if not time:
-            self.time_as_seconds = None
             return
 
-        minutes, seconds_and_milli = time.split(":")
-        minutes = int(minutes)
+        try:
+            minutes, seconds_and_milli = time.split(":")
+            minutes = int(minutes)
 
-        seconds, milli = seconds_and_milli.split(".")
-        seconds = int(seconds)
-        milli = int(milli)*10
+            seconds, milli = seconds_and_milli.split(".")
+            seconds = int(seconds)
+            milli = int(milli)*10
 
-        as_delta = datetime.timedelta(minutes=minutes, seconds=seconds, milliseconds=milli)
-        self.time_as_seconds = as_delta.total_seconds()
+            as_delta = datetime.timedelta(minutes=minutes, seconds=seconds, milliseconds=milli)
+            self.time_as_seconds = as_delta.total_seconds()
+        except ValueError:
+            return
 
 
 

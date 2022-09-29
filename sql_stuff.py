@@ -50,7 +50,7 @@ async def commit_game_to_db(game: SingleGame):
         resulting_string = "This was not added to the database due to a duplicate entry already existing."
     except Exception as e:
         print(e)
-        resulting_string = e
+        resulting_string = str(type(e))
     session.close()
 
     return resulting_string

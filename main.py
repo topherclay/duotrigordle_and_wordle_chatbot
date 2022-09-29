@@ -62,6 +62,12 @@ async def respond_to_score_post(user, score_string, message):
     await message.channel.send(reply)
     # await message.channel.send(str(game))
     commit_result = await sql_stuff.commit_game_to_db(game)
+    if "err" in commit_result:
+        try_again_message = commit_result
+        try_again_message += "\n Whoops, I will try to submit this to the database again."
+        await message.channel.send(try_again_message)
+        commit_result = await sql_stuff.commit_game_to_db(game)
+
     await message.channel.send(commit_result)
 
 

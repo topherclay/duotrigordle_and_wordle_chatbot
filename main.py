@@ -110,8 +110,13 @@ def generate_help_message():
     message += f' {COMMAND_STRING["top by rank"]:<7}: top ten sorted by turns.\n'
     message += f' {COMMAND_STRING["top by speed"]:<7}: top ten sorted by speed.\n'
     message += f' {COMMAND_STRING["show current day"]:<7}: current day\'s board.\n'
-    message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
+    # message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
     message = add_ticks(message)
+
+    for command in COMMAND_STRING:
+        assert command in message, f"{command} does not have a !help description!"
+
+
     return message
 
 

@@ -95,13 +95,13 @@ def repr_a_row(row, placement="DNQ"):
 
     user = row.user.split("#")[0]
     if row.is_a_won_game:
-        guesses_left = 37 - row.guesses_til_win
+        guesses_left = row.guesses_til_win
     else:
-        guesses_left = "None"
+        guesses_left = "DNQ"
 
 
     result = f"{str(placement)}: {user}\n" \
-             f"{' Guesses left:':<16}{guesses_left:<10}\n" \
+             f"{' Turns used:':<16}{guesses_left:<10}\n" \
              f"{' Total seconds:': <16}{row.time:<10}"
     return result
 

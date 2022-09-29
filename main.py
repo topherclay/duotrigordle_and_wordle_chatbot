@@ -69,8 +69,7 @@ async def on_message(message):
         return
 
     if message.content == COMMAND_STRING["show commands"]:
-        reply = generate_help_message()
-        await message.channel.send(reply)
+        await message.channel.send(HELP_MESSAGE)
         return
 
 
@@ -113,11 +112,12 @@ def generate_help_message():
     # message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
     message = add_ticks(message)
 
-    # for command in COMMAND_STRING:
-    #     assert command in message, f"{command} does not have a !help description!"
+    for command in COMMAND_STRING:
+        assert command in message, f"{command} does not have a !help description!"
 
 
     return message
 
 
+HELP_MESSAGE = generate_help_message()
 client.run(client_token)

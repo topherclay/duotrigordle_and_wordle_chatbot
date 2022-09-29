@@ -65,7 +65,11 @@ class SingleGame:
     def turn_time_to_seconds(self):
         time = self.time
 
-        minutes, seconds_and_milli = str(time).split(":")
+        if not time:
+            self.time_as_seconds = None
+            return
+
+        minutes, seconds_and_milli = time.split(":")
         minutes = int(minutes)
 
         seconds, milli = seconds_and_milli.split(".")

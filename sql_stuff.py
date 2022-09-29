@@ -5,6 +5,8 @@ from sqlalchemy.orm import relationship, sessionmaker
 
 import os
 from dotenv import load_dotenv
+
+import parsing_stuff
 from stuff_to_be_saved import SingleGame
 
 
@@ -99,10 +101,11 @@ def repr_a_row(row, placement="DNQ"):
     else:
         guesses_left = "DNQ"
 
+    time = parsing_stuff.convert_seconds_to_formatted_string(row.time)
 
     result = f"{str(placement)}: {user}\n" \
              f"{' Turns used:':<16}{guesses_left:<10}\n" \
-             f"{' Total seconds:': <16}{row.time:<10}"
+             f"{' Total seconds:': <16}{time:<10}"
     return result
 
 

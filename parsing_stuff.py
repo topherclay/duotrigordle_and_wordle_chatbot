@@ -1,5 +1,7 @@
+import datetime
 
 # single_symbol = "🟥"
+
 
 def get_scores_only(original_string):
     abridged = None
@@ -159,5 +161,18 @@ async def main_parse(orig_string):
     return grid
 
 
+def convert_seconds_to_formatted_string(seconds):
+
+    delta = datetime.timedelta(seconds=seconds)
+    minutes, seconds = divmod(delta.seconds, 60)
+
+    formatted_time = f"{minutes:02d}:{seconds:02d}.{str(delta.microseconds)[:2]}"
+    return formatted_time
+
+
+
 if __name__ == "__main__":
-    pass
+    # 05:05.37
+    # 305.37
+    formatted = convert_seconds_to_formatted_string(305.37)
+    print(formatted)

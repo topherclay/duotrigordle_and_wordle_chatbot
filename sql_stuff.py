@@ -73,7 +73,7 @@ async def get_all_of_a_day():
         .order_by(GameRow.guesses_til_win, GameRow.time)\
         .all()
 
-    result_to_print = ""
+    result_to_print = "☀Games from today.🌕"
     for placement, game in enumerate(today_only):
         result_to_print += repr_a_row(game, placement=placement+1) + "\n"
         print(repr_a_row(game, placement=placement))
@@ -117,7 +117,7 @@ def get_top():
         .all()
 
     rank = 1
-    result = "Top ten by turns used.\n"
+    result = "🏆Top ten by turns used.🏆\n"
     result += f"{'#':>2}: {'user':^12}|{'board':^5}| {'time':^8} |{'turns':^5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
@@ -137,7 +137,7 @@ def get_top_speed():
         .all()
 
     rank = 1
-    result = "Top ten by speed.\n"
+    result = "⏱Top ten by speed.⏱\n"
     result += f"{'#':>2}: {'user':^12}|{'board':^5}| {'time':^8} |{'turns':^5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]

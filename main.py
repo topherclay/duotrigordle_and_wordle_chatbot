@@ -115,7 +115,6 @@ def generate_help_message():
     for command_key, command in COMMAND_STRING.items():
         assert command in message, f"{command} does not have a !help description!"
 
-
     return message
 
 

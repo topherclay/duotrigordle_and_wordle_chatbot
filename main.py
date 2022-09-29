@@ -112,7 +112,7 @@ def generate_help_message():
     message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
     message = add_ticks(message)
 
-    for command in COMMAND_STRING:
+    for command_key, command in COMMAND_STRING.items():
         assert command in message, f"{command} does not have a !help description!"
 
 

@@ -14,6 +14,13 @@ client_token = os.getenv("CLIENT_TOKEN")
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
+COMMAND_STRING = {
+    "top by rank": "!top",
+    "top by speed": "!speed",
+    "show current day": "!today",
+    "show commands": "!help"
+}
+
 
 @client.event
 async def on_ready():
@@ -27,7 +34,7 @@ async def on_message(message):
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
-        await sql_stuff.get_all_of_a_day()
+        return
 
     if message.content.startswith("$user"):
         content = message.content
@@ -35,26 +42,37 @@ async def on_message(message):
         user = first_line.split(" ")[1]
         score_string = message.content
         await respond_to_score_post(user, score_string, message)
+        return
 
     if message.content.startswith("Daily Duotrigordle"):
         user = message.author
         score_string = message.content
         await respond_to_score_post(user, score_string, message)
+        return
 
-    if message.content == "!today":
+    if message.content == COMMAND_STRING["show current day"]:
         result = await sql_stuff.get_all_of_a_day()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
+        return
 
-    if message.content == "!top":
+    if message.content == COMMAND_STRING["top by rank"]:
         result = sql_stuff.get_top()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
+        return
 
-    if message.content == "!speed":
+    if message.content == COMMAND_STRING["top by speed"]:
         result = sql_stuff.get_top_speed()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
+        return
+
+    if message.content == COMMAND_STRING["show commands"]:
+        reply = generate_help_message()
+        await message.channel.send(reply)
+        return
+
 
 
 async def respond_to_score_post(user, score_string, message):
@@ -81,6 +99,15 @@ async def respond_to_score_post(user, score_string, message):
 
 
 
+
+
+def generate_help_message():
+    message = "Here are the available commands.\n"
+    message += f'{COMMAND_STRING["top by rank"]}: Shows the top ten games sorted by turns used.\n'
+    message += f'{COMMAND_STRING["top by speed"]}: Shows the top ten games sorted by speed.\n'
+    message += f'{COMMAND_STRING["show current day"]}: Shows the games that were submitted on the current day\'s board.\n'
+    message += f'{COMMAND_STRING["show commands"]}: Shows the available commands.\n'
+    return message
 
 
 client.run(client_token)

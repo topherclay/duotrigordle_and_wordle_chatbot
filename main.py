@@ -47,11 +47,14 @@ async def on_message(message):
         await message.channel.send(result)
 
     if message.content == "!top":
-
         result = sql_stuff.get_top()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
 
+    if message.content == "!speed":
+        result = sql_stuff.get_top_speed()
+        result = parsing_stuff.add_ticks(result)
+        await message.channel.send(result)
 
 
 async def respond_to_score_post(user, score_string, message):

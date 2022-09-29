@@ -104,8 +104,8 @@ def repr_a_row(row, placement="DNQ"):
     time = parsing_stuff.convert_seconds_to_formatted_string(row.time)
 
     result = f"{str(placement)}: {user}\n" \
-             f"{' Turns used:':>16} {guesses_left:<10}\n" \
-             f"{' Time used:': >16} {time:<10}"
+             f"{' Turns used:':>13} {guesses_left:<3}\n" \
+             f"{' Time used:': >13} {time:<8}"
     return result
 
 

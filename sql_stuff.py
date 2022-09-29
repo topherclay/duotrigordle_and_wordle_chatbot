@@ -116,14 +116,9 @@ def get_top():
         .filter(GameRow.is_a_won_game)\
         .all()
 
-    rank = 1
     result = "🏆Top ten by turns used.🏆\n"
-    result += f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
-    for game in games[:10]:
-        user = game.user.split("#")[0]
-        time = parsing_stuff.convert_seconds_to_formatted_string(game.time)
-        result += f"{rank:>2}: {user:<12}|{game.board_number:^3}|{time:^8}|{game.guesses_til_win:^2} \n"
-        rank += 1
+    result += create_rank_table(games)
+
     session.close()
 
     return result
@@ -136,14 +131,20 @@ def get_top_speed():
         .filter(GameRow.is_a_won_game)\
         .all()
 
-    rank = 1
     result = "⏱Top ten by speed.⏱\n"
-    result += f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
+    result += create_rank_table(games)
+
+    session.close()
+
+    return result
+
+
+def create_rank_table(games):
+    rank = 1
+    result = f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
         time = parsing_stuff.convert_seconds_to_formatted_string(game.time)
         result += f"{rank:>2}: {user:<12}|{game.board_number:^3}|{time:^8}|{game.guesses_til_win:^2} \n"
         rank += 1
-    session.close()
-
     return result

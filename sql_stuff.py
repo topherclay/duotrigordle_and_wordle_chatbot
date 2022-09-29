@@ -118,11 +118,11 @@ def get_top():
 
     rank = 1
     result = "Top ten by turns used.\n"
-    result += f"{'#':<3}: {'user':<12} | {'board':^5} | {'time used':^10} | {'turns used':<5}\n"
+    result += f"{'#':<3}: {'user':^12} | {'board':^5} | {'time':^8} | {'turns':^5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
         time = parsing_stuff.convert_seconds_to_formatted_string(game.time)
-        result += f"{rank:<3}: {user:<12} | {game.board_number:^5} | {time:^10} | {game.guesses_til_win:<5} \n"
+        result += f"{rank:<3}: {user:<12} | {game.board_number:^5} | {time:^8} | {game.guesses_til_win:^5} \n"
         rank += 1
     session.close()
 

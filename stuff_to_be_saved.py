@@ -79,6 +79,7 @@ class SingleGame:
             as_delta = datetime.timedelta(minutes=minutes, seconds=seconds, milliseconds=milli)
             self.time_as_seconds = as_delta.total_seconds()
         except ValueError:
+            self.time = None
             return
 
 

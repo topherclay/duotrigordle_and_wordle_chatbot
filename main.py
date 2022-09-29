@@ -60,8 +60,10 @@ async def respond_to_score_post(user, score_string, message):
     game.user = user
     print(str(game))
     await message.channel.send(reply)
-    # await message.channel.send(str(game))
+
     commit_result = await sql_stuff.commit_game_to_db(game)
+
+    # try again when an error happens on committing to MySQL.
     if "err" in commit_result:
         try_again_message = commit_result
         try_again_message += "\n Whoops, I will try to submit this to the database again."

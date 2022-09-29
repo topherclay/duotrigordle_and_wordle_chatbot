@@ -61,6 +61,10 @@ async def respond_to_score_post(user, score_string, message):
     print(str(game))
     await message.channel.send(reply)
 
+    if not game.time:
+        await message.channel.send("(No time detected. Enable speedrun mode in order to be entered into the database.)")
+        return
+
     commit_result = await sql_stuff.commit_game_to_db(game)
 
     # try again when an error happens on committing to MySQL.

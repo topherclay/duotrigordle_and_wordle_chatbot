@@ -73,7 +73,7 @@ async def get_all_of_a_day():
         .order_by(GameRow.guesses_til_win, GameRow.time)\
         .all()
 
-    result_to_print = "🌞Games from today.🌙\n"
+    result_to_print = "🌞Games from today.🌞\n"
     for placement, game in enumerate(today_only):
         result_to_print += repr_a_row(game, placement=placement+1) + "\n"
         print(repr_a_row(game, placement=placement))

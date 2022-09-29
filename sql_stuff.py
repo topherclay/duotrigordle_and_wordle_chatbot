@@ -117,7 +117,8 @@ def get_top():
         .all()
 
     rank = 1
-    result = f"{'#':<3}: {'user':<12} | {'board':^5} | {'time used':^10} | {'turns used':<5}\n"
+    result = "Top ten by turns used.\n"
+    result += f"{'#':<3}: {'user':<12} | {'board':^5} | {'time used':^10} | {'turns used':<5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
         time = parsing_stuff.convert_seconds_to_formatted_string(game.time)
@@ -136,7 +137,8 @@ def get_top_speed():
         .all()
 
     rank = 1
-    result = f"{'#':<3}: {'user':<12} | {'board':^5} | {'time used':^10} | {'turns used':<5}\n"
+    result = "Top ten by speed.\n"
+    result += f"{'#':<3}: {'user':<12} | {'board':^5} | {'time used':^10} | {'turns used':<5}\n"
     for game in games[:10]:
         user = game.user.split("#")[0]
         time = parsing_stuff.convert_seconds_to_formatted_string(game.time)

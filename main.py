@@ -105,6 +105,7 @@ def generate_help_message():
     def add_ticks(msg):
         return f"```\n{msg}\n```"
 
+    # these have to be very short to avoid wraparound.
     message = "Here are the available commands.\n"
     message += f' {COMMAND_STRING["top by rank"]:<7}: top ten sorted by turns.\n'
     message += f' {COMMAND_STRING["top by speed"]:<7}: top ten sorted by speed.\n'

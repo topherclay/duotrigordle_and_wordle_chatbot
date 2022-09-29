@@ -106,10 +106,10 @@ def generate_help_message():
         return f"```\n{msg}\n```"
 
     message = "Here are the available commands.\n"
-    message += f' {COMMAND_STRING["top by rank"]:<10}: top ten sorted by turns.\n'
-    message += f' {COMMAND_STRING["top by speed"]:<10}: top ten sorted by speed.\n'
-    message += f' {COMMAND_STRING["show current day"]:<10}: current day\'s board.\n'
-    message += f' {COMMAND_STRING["show commands"]:<10}: all commands\n'
+    message += f' {COMMAND_STRING["top by rank"]:<7}: top ten sorted by turns.\n'
+    message += f' {COMMAND_STRING["top by speed"]:<7}: top ten sorted by speed.\n'
+    message += f' {COMMAND_STRING["show current day"]:<7}: current day\'s board.\n'
+    message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
     message = add_ticks(message)
     return message
 

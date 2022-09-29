@@ -103,14 +103,14 @@ async def respond_to_score_post(user, score_string, message):
 
 def generate_help_message():
     def add_ticks(msg):
-        return f"`{msg}`"
-
+        return f"```\n{msg}\n```"
 
     message = "Here are the available commands.\n"
-    message += f' {add_ticks(COMMAND_STRING["top by rank"]):<10}: Shows the top ten games sorted by turns used.\n'
-    message += f' {add_ticks(COMMAND_STRING["top by speed"]):<10}: Shows the top ten games sorted by speed.\n'
-    message += f' {add_ticks(COMMAND_STRING["show current day"]):<10}: Shows the games that were submitted on the current day\'s board.\n'
-    message += f' {add_ticks(COMMAND_STRING["show commands"]):<10}: Shows the available commands.\n'
+    message += f' {COMMAND_STRING["top by rank"]:<10}: Shows the top ten games sorted by turns used.\n'
+    message += f' {COMMAND_STRING["top by speed"]:<10}: Shows the top ten games sorted by speed.\n'
+    message += f' {COMMAND_STRING["show current day"]:<10}: Shows the games that were submitted on the current day\'s board.\n'
+    message += f' {COMMAND_STRING["show commands"]:<10}: Shows the available commands.\n'
+    message = add_ticks(message)
     return message
 
 

@@ -117,6 +117,10 @@ def get_top(offset=0):
         .all()
 
     result = "🏆Top ten by turns used.🏆\n"
+
+    if offset:
+        result = f"🏆Ten ranks starting from {offset} by turns used.🏆\n"
+
     result += create_rank_table(games, offset=offset)
 
     session.close()

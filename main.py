@@ -72,8 +72,9 @@ async def on_message(message):
         try:
             offset = message.content.split("!topfrom ")[1]
             offset = int(offset)
-        except Exception as e:
+        except (IndexError) as e:
             print(e)
+            print(type(e))
         return
 
 

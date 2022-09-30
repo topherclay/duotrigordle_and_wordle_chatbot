@@ -109,7 +109,7 @@ def repr_a_row(row, placement="DNQ"):
     return result
 
 
-def get_top():
+def get_top(offset=0):
     session = Session()
     games = session.query(GameRow)\
         .order_by(GameRow.guesses_til_win, GameRow.time)\
@@ -124,7 +124,7 @@ def get_top():
     return result
 
 
-def get_top_speed():
+def get_top_speed(offset=0):
     session = Session()
     games = session.query(GameRow)\
         .order_by(GameRow.time)\
@@ -139,10 +139,10 @@ def get_top_speed():
     return result
 
 
-def create_rank_table(games):
-    rank = 1
+def create_rank_table(games, offset=0):
+    rank = offset+1
     result = f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
-    for game in games[:10]:
+    for game in games[offset:10]:
         user = game.user.split("#")[0]
         time = parsing_stuff.convert_seconds_to_formatted_string(game.time)
         result += f"{rank:>2}: {user:<12}|{game.board_number:^3}|{time:^8}|{game.guesses_til_win:^2} \n"

@@ -69,12 +69,14 @@ async def on_message(message):
         return
 
     if message.content.startswith("!topfrom"):
+        offset = 0
         try:
             offset = message.content.split("!topfrom ")[1]
             offset = int(offset)
-        except (IndexError) as e:
-            print(e)
-            print(type(e))
+        except IndexError:
+            await message.channel.send("Oops, please place one space before first rank you wish to see.")
+        except ValueError as e:
+            await message.channel.send(f"Sorry, I was unable to parse \`{offset}\` as a rank.")
         return
 
 

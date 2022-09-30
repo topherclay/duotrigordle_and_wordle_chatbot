@@ -68,6 +68,15 @@ async def on_message(message):
         await message.channel.send(result)
         return
 
+    if message.content.startswith("!topfrom"):
+        try:
+            offset = message.content.split("!topfrom ")[1]
+            offset = int(offset)
+        except Exception as e:
+            print(e)
+        return
+
+
     if message.content == COMMAND_STRING["show commands"]:
         await message.channel.send(HELP_MESSAGE)
         return

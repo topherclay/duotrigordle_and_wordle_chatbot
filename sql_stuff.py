@@ -140,6 +140,10 @@ def get_top_speed(offset=0):
 
 
 def create_rank_table(games, offset):
+    # to make the user supplied number match rank.
+    if offset:
+        offset -= 1
+
     rank = offset+1
     result = f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
     for game in games[offset:offset+10]:

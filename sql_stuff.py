@@ -117,7 +117,7 @@ def get_top(offset=0):
         .all()
 
     result = "🏆Top ten by turns used.🏆\n"
-    result += create_rank_table(games)
+    result += create_rank_table(games, offset=offset)
 
     session.close()
 
@@ -132,14 +132,14 @@ def get_top_speed(offset=0):
         .all()
 
     result = "⏱Top ten by speed.⏱\n"
-    result += create_rank_table(games)
+    result += create_rank_table(games, offset=offset)
 
     session.close()
 
     return result
 
 
-def create_rank_table(games, offset=0):
+def create_rank_table(games, offset):
     rank = offset+1
     result = f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
     for game in games[offset:10]:

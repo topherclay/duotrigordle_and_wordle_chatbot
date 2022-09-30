@@ -18,7 +18,8 @@ COMMAND_STRING = {
     "top by rank": "!top",
     "top by speed": "!speed",
     "show current day": "!today",
-    "show commands": "!help"
+    "show commands": "!help",
+    "show top with offset": "!topfrom"
 }
 
 
@@ -68,10 +69,10 @@ async def on_message(message):
         await message.channel.send(result)
         return
 
-    if message.content.startswith("!topfrom"):
+    if message.content.startswith(COMMAND_STRING["show top with offset"]):
         offset = 0
         try:
-            offset = message.content.split("!topfrom ")[1]
+            offset = message.content.split(f'{COMMAND_STRING["show top with offset"]} ')[1]
             offset = int(offset)
         except IndexError:
             await message.channel.send("Oops, please place one space before first rank you wish to see.")
@@ -131,6 +132,7 @@ def generate_help_message():
     message += f' {COMMAND_STRING["top by speed"]:<7}: top ten sorted by speed.\n'
     message += f' {COMMAND_STRING["show current day"]:<7}: current day\'s board.\n'
     message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
+    message += f' {COMMAND_STRING["show top with offset"]:<7}: ten ranks starting from a user provided rank.\n'
     message = add_ticks(message)
 
     for command_key, command in COMMAND_STRING.items():

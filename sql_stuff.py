@@ -119,7 +119,7 @@ def get_top(offset=0):
     result = "🏆Top ten by turns used.🏆\n"
 
     if offset:
-        result = f"🏆Ten ranks starting from {offset} by turns used.🏆\n"
+        result = f"🏆Ten ranks starting from {offset}🏆\n"
 
     result += create_rank_table(games, offset=offset)
 

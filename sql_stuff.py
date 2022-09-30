@@ -142,7 +142,7 @@ def get_top_speed(offset=0):
 def create_rank_table(games, offset):
     rank = offset+1
     result = f"{'#':>2}: {'user':^12}|{'day':^3}|{'time':^8}|{'ts':^2}\n"
-    for game in games[offset:10]:
+    for game in games[offset:offset+10]:
         user = game.user.split("#")[0]
         time = parsing_stuff.convert_seconds_to_formatted_string(game.time)
         result += f"{rank:>2}: {user:<12}|{game.board_number:^3}|{time:^8}|{game.guesses_til_win:^2} \n"

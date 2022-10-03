@@ -19,7 +19,8 @@ COMMAND_STRING = {
     "top by speed": "!speed",
     "show current day": "!today",
     "show commands": "!help",
-    "show top with offset": "!topfrom"
+    "show top with offset": "!topfrom",
+    "show speed with offset": "!speedfrom"
 }
 
 
@@ -154,6 +155,7 @@ def generate_help_message():
     message += f' {COMMAND_STRING["show current day"]:<7}: current day\'s board.\n'
     message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
     message += f' {COMMAND_STRING["show top with offset"]:<7}: ten ranks starting from a user provided rank.\n'
+    message += f' {COMMAND_STRING["show speed with offset"]:<7}: ten ranks starting from a user provided rank, sorted by speed.'
     message = add_ticks(message)
 
     for command_key, command in COMMAND_STRING.items():

@@ -87,6 +87,27 @@ async def on_message(message):
         return
 
 
+    if message.content.startswith(COMMAND_STRING["show speed with offset"]):
+        offset = 0
+        try:
+            offset = message.content.split(f'{COMMAND_STRING["show speed with offset"]} ')[1]
+            offset = int(offset)
+        except IndexError:
+            await message.channel.send("Oops, please place one space before first rank you wish to see.")
+            return
+        except ValueError as e:
+            await message.channel.send(f"Sorry, I was unable to parse `{offset}` as a rank.")
+            return
+
+        result = sql_stuff.get_top_speed(offset=offset)
+        result = parsing_stuff.add_ticks(result)
+        await message.channel.send(result)
+        return
+
+
+
+
+
 
 
 

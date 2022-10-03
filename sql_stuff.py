@@ -136,6 +136,10 @@ def get_top_speed(offset=0):
         .all()
 
     result = "⏱Top ten by speed.⏱\n"
+
+    if offset:
+        result = f"⏱Ten ranks starting from {offset}⏱\n"
+
     result += create_rank_table(games, offset=offset)
 
     session.close()

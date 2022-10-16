@@ -347,9 +347,9 @@ def display_one_stat_block(which_single_user):
     full_string = f"Stats for {stats['user']}:\n" \
                   f"\tTotal Games: {stats['count_of_games']}\n" \
                   f"\tWins: {stats['win_total']}\n" \
-                  f"\tLoses: {stats['lose_total']} (+{stats['presumed_loses']})\n" \
-                  f"\tW/L%: {stats['percentage_wins']}%/{stats['percentage_lost']}%" \
-                  f" ({stats['presumed_win_percentage']}%/{stats['presumed_lose_percentage']}%)\n" \
+                  f"\tLosses: {stats['lose_total']} (+{stats['presumed_loses']})\n" \
+                  f"\tW%: {stats['percentage_wins']}% ({stats['presumed_win_percentage']}%)\n" \
+                  f"\tL%: {stats['percentage_lost']}% ({stats['presumed_lose_percentage']}%)\n" \
                   f"\tWin Streak: {stats['win_streak']}\n" \
                   f"\tLose Streak: {stats['lose_streak']}"\
                   f"\t"

@@ -174,12 +174,12 @@ def get_user_from_string(user):
     return found_user
 
 
-def get_streak_from_username(username, winning=True):
-    user = username
+def get_streak_from_username(_username, winning=True):
+    user = str(_username)
     session = Session()
 
     query_results = session.query(GameRow) \
-        .filter(GameRow.user == username) \
+        .filter(GameRow.user == _username) \
         .filter(GameRow.is_a_won_game == winning) \
         .order_by(GameRow.board_number) \
         .all()

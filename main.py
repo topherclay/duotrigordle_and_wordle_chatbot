@@ -87,7 +87,6 @@ async def on_message(message):
         await message.channel.send(result)
         return
 
-
     if message.content.startswith(COMMAND_STRING["show speed with offset"]):
         offset = 0
         try:
@@ -105,17 +104,14 @@ async def on_message(message):
         await message.channel.send(result)
         return
 
-
-
-
-
-
-
-
     if message.content == COMMAND_STRING["show commands"]:
         await message.channel.send(HELP_MESSAGE)
         return
 
+    if message.content == "!statme":
+        _user = message.author
+        result = await sql_stuff.stat_me(_user)
+        await message.channel.send(result)
 
 
 async def respond_to_score_post(user, score_string, message):

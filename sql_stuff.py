@@ -338,6 +338,7 @@ def display_one_stat_block(which_single_user):
         stats: dict = all_personal_stats(which_single_user)
     except Exception as e:
         print(e)
+        print(which_single_user)
         return e
 
 

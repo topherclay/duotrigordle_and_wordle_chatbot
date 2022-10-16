@@ -110,6 +110,7 @@ async def on_message(message):
 
     if message.content == "!statme":
         _user = message.author
+        _user = str(_user)
         result = await sql_stuff.stat_me(_user)
         await message.channel.send(result)
 

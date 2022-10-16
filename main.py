@@ -20,7 +20,8 @@ COMMAND_STRING = {
     "show current day": "!today",
     "show commands": "!help",
     "show top with offset": "!topfrom",
-    "show speed with offset": "!speedfrom"
+    "show speed with offset": "!speedfrom",
+    "show stats": "!statme"
 }
 
 
@@ -78,7 +79,7 @@ async def on_message(message):
         except IndexError:
             await message.channel.send("Oops, please place one space before first rank you wish to see.")
             return
-        except ValueError as e:
+        except ValueError:
             await message.channel.send(f"Sorry, I was unable to parse `{offset}` as a rank.")
             return
 
@@ -95,7 +96,7 @@ async def on_message(message):
         except IndexError:
             await message.channel.send("Oops, please place one space before first rank you wish to see.")
             return
-        except ValueError as e:
+        except ValueError:
             await message.channel.send(f"Sorry, I was unable to parse `{offset}` as a rank.")
             return
 
@@ -108,7 +109,7 @@ async def on_message(message):
         await message.channel.send(HELP_MESSAGE)
         return
 
-    if message.content == "!statme":
+    if message.content == COMMAND_STRING["show stats"]:
         _user = message.author
         _user = str(_user)
         result = await sql_stuff.stat_me(_user)
@@ -152,7 +153,8 @@ def generate_help_message():
     message += f' {COMMAND_STRING["show current day"]:<7}: current day\'s board.\n'
     message += f' {COMMAND_STRING["show commands"]:<7}: all commands\n'
     message += f' {COMMAND_STRING["show top with offset"]:<7}: ten ranks starting from a user provided rank.\n'
-    message += f' {COMMAND_STRING["show speed with offset"]:<7}: ten ranks starting from a user provided rank, sorted by speed.'
+    message += f' {COMMAND_STRING["show speed with offset"]:<7}: ten ranks starting from a user provided rank, sorted by speed.\n'
+    message += f' {COMMAND_STRING["show stats"]:<7}: Your stats.\n'
     message = add_ticks(message)
 
     for command_key, command in COMMAND_STRING.items():

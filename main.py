@@ -113,6 +113,7 @@ async def on_message(message):
         _user = message.author
         _user = str(_user)
         result = await sql_stuff.stat_me(_user)
+        result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
 
 

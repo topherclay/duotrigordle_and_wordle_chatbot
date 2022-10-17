@@ -21,7 +21,7 @@ COMMAND_STRING = {
     "show commands": "!help",
     "show top with offset": "!topfrom",
     "show speed with offset": "!speedfrom",
-    "show stats": "!statsme"
+    "show stats": "!statme"
 }
 
 

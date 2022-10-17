@@ -117,7 +117,7 @@ async def on_message(message):
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
 
-    if message.content == "!statall":
+    if message.content == COMMAND_STRING["show all stats"]:
         result = await sql_stuff.stat_all()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)

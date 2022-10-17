@@ -21,7 +21,8 @@ COMMAND_STRING = {
     "show commands": "!help",
     "show top with offset": "!topfrom",
     "show speed with offset": "!speedfrom",
-    "show stats": "!statme"
+    "show stats": "!statme",
+    "show all stats": "!statall"
 }
 
 
@@ -161,6 +162,7 @@ def generate_help_message():
     message += f' {COMMAND_STRING["show top with offset"]:<7}: ten ranks starting from a user provided rank.\n'
     message += f' {COMMAND_STRING["show speed with offset"]:<7}: ten ranks starting from a user provided rank, sorted by speed.\n'
     message += f' {COMMAND_STRING["show stats"]:<7}: Your stats.\n'
+    message += f' {COMMAND_STRING["show all stats"]:<7}: All stats.\n'
     message = add_ticks(message)
 
     for command_key, command in COMMAND_STRING.items():

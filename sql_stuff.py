@@ -384,13 +384,16 @@ def show_all_stats():
     #            "percentage_lost": percentage_lost,
     #            "user": user}
 
+    for user_stat in user_stats:
+        user_stat['user'] = user_stat['user'].split("#")[0]
+
 
 
     full_message = "Total Games:\n"
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['count_of_games']
-        stat_message = f" {user_stat['user']}: {ranked_stat} ({user_stat['presumed_games_played']})\n"
+        stat_message = f" {user_stat['user']:>12}: {ranked_stat} ({user_stat['presumed_games_played']})\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)
@@ -402,7 +405,7 @@ def show_all_stats():
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['win_total']
-        stat_message = f"  {user_stat['user']}: {ranked_stat}\n"
+        stat_message = f" {user_stat['user']:>12}: {ranked_stat}\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)
@@ -414,7 +417,7 @@ def show_all_stats():
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['lose_total'] + user_stat['presumed_loses']
-        stat_message = f"  {user_stat['user']}: {user_stat['lose_total']} (+{user_stat['presumed_loses']})\n"
+        stat_message = f" {user_stat['user']:>12}: {user_stat['lose_total']} (+{user_stat['presumed_loses']})\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)
@@ -428,7 +431,7 @@ def show_all_stats():
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['presumed_win_percentage']
-        stat_message = f"  {user_stat['user']}: {user_stat['percentage_wins']}% ({user_stat['presumed_win_percentage']}%)\n"
+        stat_message = f" {user_stat['user']:>12}: {user_stat['percentage_wins']}% ({user_stat['presumed_win_percentage']}%)\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)
@@ -441,7 +444,7 @@ def show_all_stats():
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['presumed_lose_percentage']
-        stat_message = f"  {user_stat['user']}: {user_stat['percentage_lost']}% ({user_stat['presumed_lose_percentage']}%)\n"
+        stat_message = f" {user_stat['user']:>12}: {user_stat['percentage_lost']}% ({user_stat['presumed_lose_percentage']}%)\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)
@@ -455,7 +458,7 @@ def show_all_stats():
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['win_streak']
-        stat_message = f"  {user_stat['user']}: {ranked_stat}\n"
+        stat_message = f" {user_stat['user']:>12}: {ranked_stat}\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)
@@ -467,7 +470,7 @@ def show_all_stats():
     stat_messages = []
     for user_stat in user_stats:
         ranked_stat = user_stat['lose_streak']
-        stat_message = f"  {user_stat['user']}: {ranked_stat}\n"
+        stat_message = f" {user_stat['user']:>12}: {ranked_stat}\n"
         stat_messages.append((stat_message, ranked_stat))
 
     stat_messages.sort(key=lambda x: x[1], reverse=True)

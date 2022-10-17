@@ -116,6 +116,11 @@ async def on_message(message):
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
 
+    if message.content == "!statall":
+        result = await sql_stuff.stat_all()
+        result = parsing_stuff.add_ticks(result)
+        await message.channel.send(result)
+
 
 async def respond_to_score_post(user, score_string, message):
     reply = await parsing_stuff.main_parse(score_string)

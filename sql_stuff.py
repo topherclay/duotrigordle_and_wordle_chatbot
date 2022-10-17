@@ -162,6 +162,9 @@ def create_rank_table(games, offset):
     return result
 
 
+
+
+
 def get_user_from_string(user):
     found_user = None
     session = Session()
@@ -254,28 +257,28 @@ def all_personal_stats(_username):
         .filter(GameRow.user == user).all()
 
     count_of_games_played = len(count_of_games_played)
-    print(f"{user} played {count_of_games_played} games")
+    # print(f"{user} played {count_of_games_played} games")
 
     presumed_count = session.query(GameRow.board_number)\
         .filter(GameRow.user == user) \
         .order_by(sqlalchemy.asc(GameRow.board_number)).all()
 
     presumed_count = presumed_count[-1][0] - presumed_count[0][0] + 1
-    print(f"{user} should have {presumed_count} games.")
+    # print(f"{user} should have {presumed_count} games.")
 
 
     streak_of_games_played = get_streak_from_username(user, winning=True)
-    print(f"{user} longest winning streak is {streak_of_games_played[1]} games.")
+    # print(f"{user} longest winning streak is {streak_of_games_played[1]} games.")
 
     lose_streak = get_streak_from_username(user, winning=False)
-    print(f"{user} longest losing streak is {lose_streak[1]} games.")
+    # print(f"{user} longest losing streak is {lose_streak[1]} games.")
 
     count_of_wins = session.query(GameRow) \
         .filter(GameRow.user == user)\
         .filter(GameRow.is_a_won_game == True)\
         .all()
     count_of_wins = len(count_of_wins)
-    print(f"{user} won {count_of_wins} total.")
+    # print(f"{user} won {count_of_wins} total.")
 
 
     count_of_losses = session.query(GameRow) \
@@ -284,21 +287,21 @@ def all_personal_stats(_username):
         .all()
     count_of_losses = len(count_of_losses)
     presumed_losses = presumed_count - count_of_wins - count_of_losses
-    print(f"{user} lost {count_of_losses} total. (+{presumed_losses} losses.)")
+    # print(f"{user} lost {count_of_losses} total. (+{presumed_losses} losses.)")
 
 
     percentage_wins = (count_of_wins / (count_of_wins + count_of_losses)) * 100
     percentage_wins = round(percentage_wins, 2)
     presumed_percentage_wins = (count_of_wins / (count_of_wins + count_of_losses + presumed_losses)) * 100
     presumed_percentage_wins = round(presumed_percentage_wins, 2)
-    print(f"{user} won {percentage_wins:02.02f}% ({presumed_percentage_wins:02.02f}%).")
+    # print(f"{user} won {percentage_wins:02.02f}% ({presumed_percentage_wins:02.02f}%).")
 
 
     percentage_lost = count_of_losses / (count_of_wins + count_of_losses) * 100
     percentage_lost = round(percentage_lost, 2)
     presumed_percentage_lost = (count_of_losses + presumed_losses) / (count_of_wins + count_of_losses + presumed_losses) * 100
     presumed_percentage_lost = round(presumed_percentage_lost, 2)
-    print(f"{user} lost {percentage_lost:02.02f}% ({presumed_percentage_lost:02.02f}%).")
+    # print(f"{user} lost {percentage_lost:02.02f}% ({presumed_percentage_lost:02.02f}%).")
 
 
     result = {"count_of_games": count_of_games_played,
@@ -363,19 +366,130 @@ async def stat_me(_username):
 
 
 
+def show_all_stats():
+    all_users = get_all_usernames()
+
+    user_stats = [all_personal_stats(user) for user in all_users]
+
+    # result = {"count_of_games": count_of_games_played,
+    #            "presumed_games_played": presumed_count,
+    #            "win_streak": streak_of_games_played,
+    #            "lose_streak": lose_streak,
+    #            "win_total": count_of_wins,
+    #            "lose_total": count_of_losses,
+    #            "presumed_loses": presumed_losses,
+    #            "presumed_win_percentage": presumed_percentage_wins,
+    #            "presumed_lose_percentage": presumed_percentage_lost,
+    #            "percentage_wins":  percentage_wins,
+    #            "percentage_lost": percentage_lost,
+    #            "user": user}
+
+
+
+    full_message = "Total Games:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['count_of_games']
+        stat_message = f" {user_stat['user']}: {ranked_stat} ({user_stat['presumed_games_played']})\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+    full_message += "Total Wins:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['win_total']
+        stat_message = f"  {user_stat['user']}: {ranked_stat}\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+    full_message += "Total Losses:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['lose_total'] + user_stat['presumed_loses']
+        stat_message = f"  {user_stat['user']}: {user_stat['lose_total']} (+{user_stat['presumed_loses']})\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+
+
+    full_message += "Win Percentage:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['presumed_win_percentage']
+        stat_message = f"  {user_stat['user']}: {user_stat['percentage_wins']}% ({user_stat['presumed_win_percentage']}%)\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+
+    full_message += "Lose Percentage:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['presumed_lose_percentage']
+        stat_message = f"  {user_stat['user']}: {user_stat['percentage_lost']}% ({user_stat['presumed_lose_percentage']}%)\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+
+
+    full_message += "Win Streak:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['win_streak']
+        stat_message = f"  {user_stat['user']}: {ranked_stat}\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+    full_message += "Lose Streak:\n"
+    stat_messages = []
+    for user_stat in user_stats:
+        ranked_stat = user_stat['lose_streak']
+        stat_message = f"  {user_stat['user']}: {ranked_stat}\n"
+        stat_messages.append((stat_message, ranked_stat))
+
+    stat_messages.sort(key=lambda x: x[1], reverse=True)
+
+    for message in stat_messages:
+        full_message += message[0]
+
+
+    return full_message
+
+
+async def stat_all():
+    return show_all_stats()
+
 
 
 if __name__ == "__main__":
     print("testing")
 
-    username = get_user_from_string("lark")
 
-    display_one_stat_block(username)
-
-    # user_stats = []
-    # for name in get_all_usernames():
-    #     user_stats.append(all_personal_stats(name))
-
+    msg = show_all_stats()
+    print(msg)
 
 
 

@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 import parsing_stuff
 from stuff_to_be_saved import SingleGame
 
+import json
 
 Base = declarative_base()
 
@@ -545,6 +546,8 @@ def get_data_for_graphing():
 
     print(data)
 
+    with open("data_for_graph.json", "w") as file:
+        json.dump(data, file)
 
 
 

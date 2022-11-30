@@ -540,7 +540,7 @@ def get_data_for_graphing():
 
     for user in users:
         data = session.query(GameRow.board_number, GameRow.time, GameRow.guesses_til_win, GameRow.is_a_won_game)\
-            .filter(GameRow.user == user)
+            .filter(GameRow.user == user).all()
         print(data)
 
 
@@ -552,7 +552,7 @@ if __name__ == "__main__":
     print("testing")
 
     # user = get_user_from_string("toph")
-    # compare_latest_game_to_personal_ranks(user)
+    compare_latest_game_to_personal_ranks(user)
     print(get_data_for_graphing())
 
 

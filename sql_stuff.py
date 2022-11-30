@@ -537,13 +537,14 @@ def get_data_for_graphing():
     users = get_all_usernames()
     session = Session()
 
-
+    data = {}
     for user in users:
-        data = session.query(GameRow.board_number, GameRow.time, GameRow.guesses_til_win, GameRow.is_a_won_game)\
+        users_data = session.query(GameRow.board_number, GameRow.time, GameRow.guesses_til_win, GameRow.is_a_won_game)\
             .filter(GameRow.user == user).all()
-        print(user)
-        print(data)
-        print("--\n--\n--")
+        data[user] = users_data
+
+    print(data)
+
 
 
 

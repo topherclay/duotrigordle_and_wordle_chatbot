@@ -371,18 +371,6 @@ def show_all_stats():
 
     user_stats = [all_personal_stats(user) for user in all_users]
 
-    # result = {"count_of_games": count_of_games_played,
-    #            "presumed_games_played": presumed_count,
-    #            "win_streak": streak_of_games_played,
-    #            "lose_streak": lose_streak,
-    #            "win_total": count_of_wins,
-    #            "lose_total": count_of_losses,
-    #            "presumed_loses": presumed_losses,
-    #            "presumed_win_percentage": presumed_percentage_wins,
-    #            "presumed_lose_percentage": presumed_percentage_lost,
-    #            "percentage_wins":  percentage_wins,
-    #            "percentage_lost": percentage_lost,
-    #            "user": user}
 
     for user_stat in user_stats:
         user_stat['user'] = user_stat['user'].split("#")[0]
@@ -486,14 +474,86 @@ async def stat_all():
     return show_all_stats()
 
 
+def compare_latest_game_to_personal_ranks(_username):
+    session = Session()
+
+    latest_board_number, is_winning = session.query(GameRow.board_number, GameRow.is_a_won_game)\
+        .filter(GameRow.user == user) \
+        .order_by(sqlalchemy.desc(GameRow.board_number)).first()
+
+    if not is_winning:
+        return "DNQ", "DNQ"
+
+
+    ranked_games = session.query(GameRow.board_number, GameRow.guesses_til_win, GameRow.time) \
+        .filter(GameRow.user == user) \
+        .filter(GameRow.is_a_won_game) \
+        .order_by(sqlalchemy.asc(GameRow.guesses_til_win), sqlalchemy.asc(GameRow.time))\
+        .all()
+
+
+    rank_of_latest = None
+    rank_of_this = 0
+    for game in ranked_games:
+        rank_of_this = rank_of_this + 1
+        # print(game.board_number)
+        if game.board_number == latest_board_number:
+            rank_of_latest = rank_of_this
+            break
+
+    speed_ranked_games = session.query(GameRow.board_number, GameRow.guesses_til_win, GameRow.time) \
+        .filter(GameRow.user == user) \
+        .filter(GameRow.is_a_won_game) \
+        .order_by(sqlalchemy.asc(GameRow.time))\
+        .all()
+
+    speed_rank_of_latest = None
+    rank_of_this = 0
+    for game in ranked_games:
+        rank_of_this = rank_of_this + 1
+        if game.board_number == latest_board_number:
+            speed_rank_of_latest = rank_of_this
+            break
+
+    rank_of_latest = None
+    rank_of_this = 0
+    for game in speed_ranked_games:
+        rank_of_this = rank_of_this + 1
+        if game.board_number == latest_board_number:
+            rank_of_latest = rank_of_this
+            break
+
+    print(f'rank_of_latest was {rank_of_latest}')
+    print(f'speed_rank_of_latest was {speed_rank_of_latest}')
+
+    return rank_of_latest, speed_rank_of_latest
+
+
+
+def get_data_for_graphing():
+    print("getting data from graph")
+
+
+    users = get_all_usernames()
+    session = Session()
+
+
+    for user in users:
+        data = session.query(GameRow.board_number, GameRow.time, GameRow.guesses_til_win, GameRow.is_a_won_game)\
+            .filter(GameRow.user == user)
+        print(data)
+
+
+
+
+
 
 if __name__ == "__main__":
     print("testing")
 
-
-    msg = show_all_stats()
-    print(msg)
-
+    # user = get_user_from_string("toph")
+    # compare_latest_game_to_personal_ranks(user)
+    print(get_data_for_graphing())
 
 
 

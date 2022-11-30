@@ -552,7 +552,7 @@ if __name__ == "__main__":
     print("testing")
 
     # user = get_user_from_string("toph")
-    compare_latest_game_to_personal_ranks(user)
+    # compare_latest_game_to_personal_ranks(user)
     print(get_data_for_graphing())
 
 

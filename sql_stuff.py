@@ -541,8 +541,9 @@ def get_data_for_graphing():
     for user in users:
         data = session.query(GameRow.board_number, GameRow.time, GameRow.guesses_til_win, GameRow.is_a_won_game)\
             .filter(GameRow.user == user).all()
+        print(user)
         print(data)
-
+        print("--\n--\n--")
 
 
 

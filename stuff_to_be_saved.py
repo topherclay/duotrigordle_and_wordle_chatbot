@@ -116,8 +116,13 @@ class SingleWordle:
         # eg: 'Wordle 555 X/6'
         _, day, score = header.split(" ")
         score = score.split("/")[0]
+
+
         if score == "X":
             score = "0"
+            self.is_a_won_game = False
+        else:
+            self.is_a_won_game = True
 
 
         score = int(score)
@@ -135,4 +140,11 @@ class SingleWordle:
         self.shape = content
         self.board_number = day
         self.guesses_til_win = score
+
+
+        if self.is_a_won_game:
+            if self.shape[-5:0] != "GGGGG":
+                raise ValueError("How did you win without five greens?")
+
+
 

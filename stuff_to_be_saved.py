@@ -106,7 +106,7 @@ class SingleWordle:
         self.guesses_til_win = None
         self.is_a_won_game = None
         self.shape = None
-        self.parse_the_string()
+        self.parse_the_string(full_string)
 
 
 

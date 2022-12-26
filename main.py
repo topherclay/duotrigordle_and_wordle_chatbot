@@ -127,7 +127,8 @@ async def on_message(message):
         await respond_to_wordle_post(message.content, message.author, message)
 
     if message.content == "!test":
-        await try_to_read_history(message)
+        # await try_to_read_history(message)
+        await sql_stuff.find_most_popular_wordles()
 
 
 async def respond_to_score_post(user, score_string, message):
@@ -161,9 +162,6 @@ async def respond_to_wordle_post(content, author, message=None):
     is_success = await sql_stuff.commit_wordle_to_db(wordle)
 
 
-
-
-
     embed = discord.Embed(title="poop", color=discord.Color.blue())
     embed.add_field(name="database result:", value=is_success)
 
@@ -173,7 +171,6 @@ async def respond_to_wordle_post(content, author, message=None):
 
     if message and is_success:
         await message.channel.send(embed=embed)
-
 
 
     return is_success

@@ -605,6 +605,23 @@ async def check_shape_count(shape):
     return copies
 
 
+
+async def find_most_popular_wordles():
+    session = Session()
+    uniques = session.query(WordleRow.shape).count() \
+        .all()
+
+
+    for unique in uniques:
+        print(unique)
+
+
+    session.close()
+    return
+
+
+
+
 if __name__ == "__main__":
     print("testing")
 

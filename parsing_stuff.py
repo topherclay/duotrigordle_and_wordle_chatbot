@@ -177,9 +177,12 @@ async def digest_a_wordle_result(message):
     print(message)
     print("---")
     header, content = message.split("\n\n")
-    print(header)
+    _, day, score = header.split(" ")
+
+
     print("==")
     print(content)
+    print("🟩" in content)
 
     return None
 

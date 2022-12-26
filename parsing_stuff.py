@@ -171,6 +171,17 @@ def convert_seconds_to_formatted_string(seconds):
 
 
 
+async def digest_a_wordle_result(message):
+
+    print("I found a wordle message")
+    print(message)
+
+
+    return None
+
+
+
+
 if __name__ == "__main__":
     # 05:05.37
     # 305.37

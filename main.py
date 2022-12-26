@@ -38,6 +38,7 @@ async def on_message(message):
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
+
         return
 
     if message.content.startswith("$user"):
@@ -121,6 +122,10 @@ async def on_message(message):
         result = await sql_stuff.stat_all()
         result = parsing_stuff.add_ticks(result)
         await message.channel.send(result)
+
+    if message.content.startswith("Wordle "):
+        await parsing_stuff.digest_a_wordle_result(message)
+
 
 
 async def respond_to_score_post(user, score_string, message):

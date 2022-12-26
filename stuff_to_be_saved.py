@@ -142,6 +142,7 @@ class SingleWordle:
 
         if self.is_a_won_game:
             if self.shape[-5:0] != "GGGGG":
+                print(self.shape[-5:0])
                 raise ValueError("How did you win without five greens as your last line?")
 
 

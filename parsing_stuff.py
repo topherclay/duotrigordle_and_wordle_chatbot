@@ -175,7 +175,11 @@ async def digest_a_wordle_result(message):
 
     print("I found a wordle message")
     print(message)
-
+    print("---")
+    header, content = message.split("\n\n")
+    print(header)
+    print("==")
+    print(content)
 
     return None
 

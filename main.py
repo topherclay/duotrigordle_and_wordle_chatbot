@@ -12,7 +12,6 @@ load_dotenv()
 client_token = os.getenv("CLIENT_TOKEN")
 
 intents = discord.Intents.default()
-intents.message_content = True
 client = discord.Client(intents=intents)
 
 COMMAND_STRING = {

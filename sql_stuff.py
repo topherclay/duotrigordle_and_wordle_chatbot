@@ -608,7 +608,7 @@ async def check_shape_count(shape):
 
 async def find_most_popular_wordles():
     session = Session()
-    uniques = session.query(WordleRow.user, WordleRow.board_number, WordleRow.shape)\
+    uniques = session.query(WordleRow.user)\
         .group_by(WordleRow.shape).all()
 
 

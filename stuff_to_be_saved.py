@@ -141,9 +141,9 @@ class SingleWordle:
 
 
         if self.is_a_won_game:
-            if self.shape[-5:0] != "GGGGG":
+            if self.shape[-5:] != "GGGGG":
                 print("last five are:")
-                print(self.shape[-5:0])
+                print(self.shape[-5:])
                 print("------------")
                 raise ValueError("How did you win without five greens as your last line?")
 

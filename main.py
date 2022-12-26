@@ -158,11 +158,15 @@ async def respond_to_wordle_post(content, author):
     wordle = await parsing_stuff.digest_a_wordle_result(content, author)
     print(wordle)
 
-    await sql_stuff.commit_wordle_to_db(wordle)
+    is_success = await sql_stuff.commit_wordle_to_db(wordle)
+
+    return is_success
+
 
 
 async def try_to_read_history(context):
     print("i will try to read history now.")
+
     messages = await context.channel.history(limit=None).flatten()
 
     amount_found = len(messages)
@@ -173,11 +177,18 @@ async def try_to_read_history(context):
     amount_of_wordle_only = len(wordle_messages)
     print(f"found {amount_of_wordle_only} wordle messages")
 
-    # for message in messages:
-    #     if message.content.startswith("Wordle "):
-    #         print(message.author)
-    #         print(message.created_at)
+    for index, message in enumerate(wordle_messages):
+        content = message.content
+        author = message.author
 
+        is_success = await respond_to_wordle_post(content, author)
+
+        if is_success != "This was added to database.":
+            print(f"failed and trying again on {index}")
+            is_success = await respond_to_wordle_post(content, author)
+
+        if is_success == "This was added to database.":
+            print(f"{index} was a success!")
 
 
 def generate_help_message():

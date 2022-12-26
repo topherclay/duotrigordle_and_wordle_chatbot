@@ -168,6 +168,7 @@ async def try_to_read_history(context):
     for message in messages:
         if message.content.startswith("Wordle "):
             print(message.author)
+            print(message.created_at)
 
 
 

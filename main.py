@@ -154,11 +154,18 @@ async def respond_to_score_post(user, score_string, message):
 
 
 
-async def respond_to_wordle_post(content, author):
+async def respond_to_wordle_post(content, author, message=None):
     wordle = await parsing_stuff.digest_a_wordle_result(content, author)
     print(wordle)
 
     is_success = await sql_stuff.commit_wordle_to_db(wordle)
+
+    embed = discord.Embed(title="poop", color=discord.Color.blue())
+
+    if message:
+        await message.channel.send(embed)
+
+
 
     return is_success
 
@@ -187,6 +194,7 @@ async def try_to_read_history(context):
             print(message.content)
             print(message.author)
             raise e
+
 
         if is_success != "This was added to database.":
             print(f"failed and trying again on {index}")

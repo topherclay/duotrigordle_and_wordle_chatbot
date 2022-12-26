@@ -129,7 +129,8 @@ async def on_message(message):
     if message.content == "!test":
         # await try_to_read_history(message)
         copies = await sql_stuff.find_most_popular_wordles()
-        embed = discord.Embed(title="poop", color=discord.Color.blue())
+        user = message.author.split("#")[0]
+        embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
         embed.add_field(name=f"{len(copies)}:", value="\n".join(copies), inline=False)
         await message.channel.send(embed=embed)
 
@@ -164,9 +165,9 @@ async def respond_to_wordle_post(content, author, message=None):
 
     is_success = await sql_stuff.commit_wordle_to_db(wordle)
 
-
-    embed = discord.Embed(title="poop", color=discord.Color.blue())
-    embed.add_field(name="database result:", value=is_success)
+    user = message.author.split("#")[0]
+    embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
+    embed.set_footer(text=is_success)
 
     copies = await sql_stuff.check_shape_count(wordle.shape)
 

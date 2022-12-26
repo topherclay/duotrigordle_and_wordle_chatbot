@@ -181,7 +181,12 @@ async def try_to_read_history(context):
         content = message.content
         author = message.author
 
-        is_success = await respond_to_wordle_post(content, author)
+        try:
+            is_success = await respond_to_wordle_post(content, author)
+        except Exception as e:
+            print(message.content)
+            print(message.author)
+            raise e
 
         if is_success != "This was added to database.":
             print(f"failed and trying again on {index}")

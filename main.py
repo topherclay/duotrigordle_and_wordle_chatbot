@@ -124,7 +124,7 @@ async def on_message(message):
         await message.channel.send(result)
 
     if message.content.startswith("Wordle "):
-        await respond_to_wordle_post(message.content, message.author)
+        await respond_to_wordle_post(message.content, message.author, message)
 
     if message.content == "!test":
         await try_to_read_history(message)

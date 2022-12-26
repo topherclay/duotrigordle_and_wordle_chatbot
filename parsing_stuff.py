@@ -1,6 +1,7 @@
 import datetime
 
 # single_symbol = "🟥"
+import stuff_to_be_saved
 
 
 def get_scores_only(original_string):
@@ -172,6 +173,10 @@ def convert_seconds_to_formatted_string(seconds):
 
 
 async def digest_a_wordle_result(message):
+
+    wordle = stuff_to_be_saved.SingleWordle(message)
+
+
 
 
     header, content = message.split("\n\n")

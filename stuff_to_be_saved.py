@@ -21,7 +21,6 @@ class SingleGame:
         self.turn_time_to_seconds()
 
 
-
     def parse_full_string(self, full_string):
         board_number = None
         guesses_til_win = None
@@ -98,3 +97,42 @@ class SingleGame:
                 representation += new_line
         representation += "```"
         return representation
+
+
+class SingleWordle:
+    def __init__(self, full_string):
+        self.user = None
+        self.board_number = None
+        self.guesses_til_win = None
+        self.is_a_won_game = None
+        self.shape = None
+        self.parse_the_string()
+
+
+
+    def parse_the_string(self, message):
+        header, content = message.split("\n\n")
+
+        # eg: 'Wordle 555 X/6'
+        _, day, score = header.split(" ")
+        score = score.split("/")[0]
+        if score == "X":
+            score = "0"
+
+
+        score = int(score)
+        day = int(day)
+
+        # letters are easier to parse than emojis.
+        # replace *both* light mode and dark mode emojis with B for blank.
+        content = content.replace("⬛", "B")
+        content = content.replace("⬜", "B")
+        # yellow and green emojis are the same regardless of dark mode settings.
+        content = content.replace("🟩", "G")
+        content = content.replace("🟨", "Y")
+        content = content.replace("\n", "")
+
+        self.shape = content
+        self.board_number = day
+        self.guesses_til_win = score
+

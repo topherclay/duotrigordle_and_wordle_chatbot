@@ -160,8 +160,17 @@ async def respond_to_wordle_post(content, author, message=None):
 
     is_success = await sql_stuff.commit_wordle_to_db(wordle)
 
+
+
+
+
     embed = discord.Embed(title="poop", color=discord.Color.blue())
-    embed.add_field(name="DB status", value=is_success)
+    embed.add_field(name="database result:", value=is_success)
+
+    copies = await sql_stuff.check_shape_count(wordle.shape)
+
+    embed.add_field(name="other copies:", value="\n".join(copies))
+
     if message and is_success:
         await message.channel.send(embed=embed)
 

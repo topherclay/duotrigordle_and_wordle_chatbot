@@ -589,7 +589,21 @@ def get_data_for_graphing():
         json.dump(data, file)
 
 
+async def check_shape_count(shape):
+    session = Session()
+    uniques = session.query(WordleRow.board_number, WordleRow.user) \
+        .filter(WordleRow.shape == shape) \
+        .order_by(sqlalchemy.asc(WordleRow.board_number)) \
+        .all()
+    copies = []
+    for row in uniques:
+        copies.append(f"{row.user} also got this at {row.board_number}!")
 
+    if not copies:
+        copies = ["You are the first!"]
+
+    session.close()
+    return copies
 
 
 if __name__ == "__main__":

@@ -126,6 +126,9 @@ async def on_message(message):
     if message.content.startswith("Wordle "):
         await respond_to_wordle_post(message.content, message.author)
 
+    if message.content == "!test":
+        await try_to_read_history()
+
 
 async def respond_to_score_post(user, score_string, message):
     reply = await parsing_stuff.main_parse(score_string)
@@ -156,6 +159,11 @@ async def respond_to_wordle_post(content, author):
     print(wordle)
 
     await sql_stuff.commit_wordle_to_db(wordle)
+
+
+async def try_to_read_history():
+    print("i will try to read history now.")
+
 
 
 

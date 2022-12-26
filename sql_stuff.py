@@ -610,7 +610,7 @@ async def find_most_popular_wordles():
     session = Session()
     uniques = session.query(WordleRow.shape ,func.count(WordleRow.shape).label('qty'))\
         .group_by(WordleRow.shape)\
-        .order_by('qty').all()
+        .order_by('qty').limit(5).all()
 
 
     for unique in uniques:

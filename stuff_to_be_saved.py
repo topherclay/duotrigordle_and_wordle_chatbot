@@ -141,6 +141,8 @@ class SingleWordle:
 
 
         content = [char for char in content if char in ["B", "G", "Y"]]
+        content = "".join(content)
+
 
         self.shape = content
         self.board_number = day

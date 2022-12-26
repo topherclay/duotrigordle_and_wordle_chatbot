@@ -181,9 +181,10 @@ async def digest_a_wordle_result(message):
 
 
     print("==")
-    print(content)
-    print("🟩" in content)
 
+    content = content.replace("🟩", "G")
+    content = content.replace("🟨", "Y")
+    print(content)
     return None
 
 

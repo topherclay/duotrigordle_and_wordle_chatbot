@@ -172,9 +172,10 @@ def convert_seconds_to_formatted_string(seconds):
 
 
 
-async def digest_a_wordle_result(message):
+async def digest_a_wordle_result(message, user):
 
     wordle = stuff_to_be_saved.SingleWordle(message)
+    wordle.user = user
 
     print(wordle.user)
     print(wordle.shape)

@@ -124,7 +124,7 @@ async def on_message(message):
         await message.channel.send(result)
 
     if message.content.startswith("Wordle "):
-        await parsing_stuff.digest_a_wordle_result(message.content)
+        await parsing_stuff.digest_a_wordle_result(message.content, message.author)
 
 
 

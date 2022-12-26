@@ -1,6 +1,7 @@
 import datetime
 
 # single_symbol = "🟥"
+import sql_stuff
 import stuff_to_be_saved
 
 
@@ -173,19 +174,16 @@ def convert_seconds_to_formatted_string(seconds):
 
 
 async def digest_a_wordle_result(message, user):
-
     try:
         wordle = stuff_to_be_saved.SingleWordle(message)
         wordle.user = user
+        response = wordle
     except Exception as e:
         print(e)
-        raise e
+        response = e
 
+    return response
 
-
-
-    print(wordle.user)
-    print(wordle.shape)
 
 
 

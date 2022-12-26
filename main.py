@@ -124,8 +124,7 @@ async def on_message(message):
         await message.channel.send(result)
 
     if message.content.startswith("Wordle "):
-        await parsing_stuff.digest_a_wordle_result(message.content, message.author)
-
+        await respond_to_wordle_post(message.content, message.author)
 
 
 async def respond_to_score_post(user, score_string, message):
@@ -150,6 +149,10 @@ async def respond_to_score_post(user, score_string, message):
 
     await message.channel.send(commit_result)
 
+
+
+async def respond_to_wordle_post(content, author):
+    await parsing_stuff.digest_a_wordle_result(content, author)
 
 
 

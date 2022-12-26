@@ -170,7 +170,7 @@ async def respond_to_wordle_post(content, author, message=None):
 
     copies = await sql_stuff.check_shape_count(wordle.shape)
 
-    embed.add_field(name=f"{len(copies)} so far:", value="\n".join(copies), inline=False)
+    embed.add_field(name=f"Copies = {len(copies)} so far:", value="\n".join(copies), inline=False)
 
     if message and is_success:
         await message.channel.send(embed=embed)

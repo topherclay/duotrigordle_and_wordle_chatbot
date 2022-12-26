@@ -33,6 +33,19 @@ class GameRow(Base):
 
 
 
+class WordleRow(Base):
+    __tablename__ = "wordle"
+
+    id = Column(Integer, primary_key=True)
+    user = Column(String(64))
+    is_a_won_game = Column(Boolean)
+    guesses_til_win = Column(Integer)
+    sequence = Column(String(64))
+    board_number = Column(Integer)
+    UniqueConstraint(user, board_number, name="one_per_day")
+
+
+
 Base.metadata.create_all(engine)
 
 

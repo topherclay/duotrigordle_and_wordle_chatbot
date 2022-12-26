@@ -161,11 +161,13 @@ async def respond_to_wordle_post(content, author):
     await sql_stuff.commit_wordle_to_db(wordle)
 
 
-async def try_to_read_history(message):
+async def try_to_read_history(context):
     print("i will try to read history now.")
-    messages = await message.channel.history(limit=200).flatten()
+    messages = await context.channel.history(limit=200).flatten()
 
-    print(messages)
+    for message in messages:
+        if message.content.startswith("Wordle "):
+            print(message.author)
 
 
 

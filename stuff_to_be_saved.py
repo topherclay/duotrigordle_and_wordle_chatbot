@@ -128,7 +128,7 @@ class SingleWordle:
         day = int(day)
 
         # remove extra lines.
-        content = content.splitlines()[:score]
+        content = content.splitlines()[:score-1]
         content = "".join(content)
 
 

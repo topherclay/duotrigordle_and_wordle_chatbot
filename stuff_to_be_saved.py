@@ -126,6 +126,10 @@ class SingleWordle:
         score = int(score)
         day = int(day)
 
+
+
+
+
         # letters are easier to parse than emojis.
         # replace *both* light mode and dark mode emojis with B for blank.
         content = content.replace("⬛", "B")
@@ -134,6 +138,9 @@ class SingleWordle:
         content = content.replace("🟩", "G")
         content = content.replace("🟨", "Y")
         content = content.replace("\n", "")
+
+
+        content = [char for char in content if char in ["B", "G", "Y"]]
 
         self.shape = content
         self.board_number = day

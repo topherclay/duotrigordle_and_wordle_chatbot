@@ -118,7 +118,7 @@ class SingleWordle:
 
 
         if score == "X":
-            score = "0"
+            score = "6"
             self.is_a_won_game = False
         else:
             self.is_a_won_game = True
@@ -127,8 +127,9 @@ class SingleWordle:
         score = int(score)
         day = int(day)
 
-
-
+        # remove extra lines.
+        content = content.splitlines()[:score]
+        content = "".join(content)
 
 
         # letters are easier to parse than emojis.

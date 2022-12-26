@@ -163,7 +163,7 @@ async def respond_to_wordle_post(content, author, message=None):
     embed = discord.Embed(title="poop", color=discord.Color.blue())
 
     if message:
-        await message.channel.send(embed)
+        await message.channel.send(embed=embed)
 
 
 

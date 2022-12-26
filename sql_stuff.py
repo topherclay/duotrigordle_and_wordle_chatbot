@@ -1,5 +1,5 @@
 import sqlalchemy.exc
-from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Boolean, Float, UniqueConstraint
+from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Boolean, Float, UniqueConstraint, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
@@ -608,8 +608,9 @@ async def check_shape_count(shape):
 
 async def find_most_popular_wordles():
     session = Session()
-    uniques = session.query(WordleRow.user)\
-        .group_by(WordleRow.shape).all()
+    uniques = session.query(func.count(WordleRow.shape).label('qty'))\
+        .group_by(WordleRow.shape)\
+        .order_by(sqlalchemy.desc('qty'))
 
 
     for unique in uniques:

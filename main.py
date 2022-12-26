@@ -165,6 +165,7 @@ async def try_to_read_history(message):
     print("i will try to read history now.")
     messages = await message.channel.history(limit=200).flatten()
 
+    print(messages)
 
 
 

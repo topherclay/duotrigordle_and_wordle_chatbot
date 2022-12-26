@@ -179,11 +179,10 @@ async def digest_a_wordle_result(message, user):
         wordle.user = user
         response = wordle
     except Exception as e:
-        print(e)
         response = e
+        raise e
 
     print("digested a wordle")
-    print(response)
 
     return response
 

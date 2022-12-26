@@ -12,6 +12,7 @@ load_dotenv()
 client_token = os.getenv("CLIENT_TOKEN")
 
 intents = discord.Intents.default()
+intents.message_content = True
 client = discord.Client(intents=intents)
 
 COMMAND_STRING = {
@@ -127,7 +128,7 @@ async def on_message(message):
         await respond_to_wordle_post(message.content, message.author)
 
     if message.content == "!test":
-        await try_to_read_history()
+        await try_to_read_history(message)
 
 
 async def respond_to_score_post(user, score_string, message):
@@ -161,9 +162,9 @@ async def respond_to_wordle_post(content, author):
     await sql_stuff.commit_wordle_to_db(wordle)
 
 
-async def try_to_read_history():
+async def try_to_read_history(message):
     print("i will try to read history now.")
-
+    messages = await message.channel.history(limit=200).flatten()
 
 
 

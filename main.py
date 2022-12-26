@@ -165,6 +165,14 @@ async def try_to_read_history(context):
     print("i will try to read history now.")
     messages = await context.channel.history(limit=200).flatten()
 
+    amount_found = len(messages)
+    print(f"found {amount_found} total messages")
+
+    wordle_messages = [message for message in messages if message.content.startswith("Wordle ")]
+
+    amount_of_wordle_only = len(wordle_messages)
+    print(f"found {amount_of_wordle_only} wordle messages")
+
     for message in messages:
         if message.content.startswith("Wordle "):
             print(message.author)

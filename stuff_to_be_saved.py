@@ -108,8 +108,6 @@ class SingleWordle:
         self.shape = None
         self.parse_the_string(full_string)
 
-
-
     def parse_the_string(self, message):
         header, content = message.split("\n\n")
 
@@ -144,7 +142,7 @@ class SingleWordle:
 
         if self.is_a_won_game:
             if self.shape[-5:0] != "GGGGG":
-                raise ValueError("How did you win without five greens?")
+                raise ValueError("How did you win without five greens as your last line?")
 
 
 

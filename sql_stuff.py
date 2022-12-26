@@ -7,7 +7,7 @@ import os
 from dotenv import load_dotenv
 
 import parsing_stuff
-from stuff_to_be_saved import SingleGame
+from stuff_to_be_saved import SingleGame, SingleWordle
 
 import json
 
@@ -40,13 +40,38 @@ class WordleRow(Base):
     user = Column(String(64))
     is_a_won_game = Column(Boolean)
     guesses_til_win = Column(Integer)
-    sequence = Column(String(64))
+    shape = Column(String(64))
     board_number = Column(Integer)
     UniqueConstraint(user, board_number, name="one_per_day")
 
 
 
 Base.metadata.create_all(engine)
+
+
+async def commit_wordle_to_db(wordle: SingleWordle):
+    session = Session()
+    resulting_string = ""
+    try:
+        to_be_added = WordleRow(user=wordle.user,
+                                is_a_won_game=wordle.is_a_won_game,
+                                guesses_til_win=wordle.guesses_til_win,
+                                board_number=wordle.board_number,
+                                shape=wordle.shape)
+
+        session.add(to_be_added)
+        session.commit()
+        resulting_string = "This was added to database."
+    except sqlalchemy.exc.IntegrityError:
+        resulting_string = "This was not added to the database due to a duplicate entry already existing."
+    except Exception as e:
+        print(e)
+        resulting_string = str(type(e))
+    session.close()
+
+    return resulting_string
+
+
 
 
 async def commit_game_to_db(game: SingleGame):

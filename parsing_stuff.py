@@ -173,18 +173,18 @@ def convert_seconds_to_formatted_string(seconds):
 
 async def digest_a_wordle_result(message):
 
-    print("I found a wordle message")
-    print(message)
-    print("---")
+
     header, content = message.split("\n\n")
+
+    # eg: 'Wordle 555 X/6'
     _, day, score = header.split(" ")
+    score = score.split("/")[0]
 
-
-    print("==")
-
-
-    content = content.replace("⬛", "W")
-    content = content.replace("⬜", "W")
+    # letters are easier to parse than emojis.
+    # replace *both* light mode and dark mode emojis with B for blank.
+    content = content.replace("⬛", "B")
+    content = content.replace("⬜", "B")
+    # yellow and green emojis are the same regardless of dark mode settings.
     content = content.replace("🟩", "G")
     content = content.replace("🟨", "Y")
     print(content)

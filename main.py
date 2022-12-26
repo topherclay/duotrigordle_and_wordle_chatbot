@@ -163,7 +163,7 @@ async def respond_to_wordle_post(content, author):
 
 async def try_to_read_history(context):
     print("i will try to read history now.")
-    messages = await context.channel.history(limit=200).flatten()
+    messages = await context.channel.history(limit=None).flatten()
 
     amount_found = len(messages)
     print(f"found {amount_found} total messages")

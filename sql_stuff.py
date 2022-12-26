@@ -613,12 +613,19 @@ async def find_most_popular_wordles():
         .order_by(sqlalchemy.desc('qty')).limit(5).all()
 
 
-    for unique in uniques:
-        print(unique)
+    best = uniques[0].shape
+
+    rows = session.query(WordleRow.user, WordleRow.board_number)\
+        .filter(WordleRow.shape == best).all()
+
+    copies = []
+    for row in rows:
+        user = row.user.split("#")[0]
+        copies.append(f"{user}, on day {row.board_number}.")
 
 
     session.close()
-    return
+    return copies
 
 
 

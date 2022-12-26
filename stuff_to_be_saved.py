@@ -109,7 +109,8 @@ class SingleWordle:
         self.parse_the_string(full_string)
 
     def parse_the_string(self, message):
-        header, content = message.split("\n\n")
+        header, content = message.split("\n\n")[:2]
+
 
         # eg: 'Wordle 555 X/6'
         _, day, score = header.split(" ")

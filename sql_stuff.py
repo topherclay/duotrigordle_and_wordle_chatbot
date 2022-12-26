@@ -600,7 +600,8 @@ async def check_shape_count(shape):
         user = row.user.split("#")[0]
         copies.append(f"{user}, on day {row.board_number}.")
 
-
+    if not copies:
+        copies = ["None"]
     session.close()
     return copies
 

@@ -176,24 +176,25 @@ async def digest_a_wordle_result(message):
 
     wordle = stuff_to_be_saved.SingleWordle(message)
 
+    print(wordle.user)
+    print(wordle.shape)
 
-
-
-    header, content = message.split("\n\n")
-
-    # eg: 'Wordle 555 X/6'
-    _, day, score = header.split(" ")
-    score = score.split("/")[0]
-
-    # letters are easier to parse than emojis.
-    # replace *both* light mode and dark mode emojis with B for blank.
-    content = content.replace("⬛", "B")
-    content = content.replace("⬜", "B")
-    # yellow and green emojis are the same regardless of dark mode settings.
-    content = content.replace("🟩", "G")
-    content = content.replace("🟨", "Y")
-    print(content)
-    return None
+    #
+    # header, content = message.split("\n\n")
+    #
+    # # eg: 'Wordle 555 X/6'
+    # _, day, score = header.split(" ")
+    # score = score.split("/")[0]
+    #
+    # # letters are easier to parse than emojis.
+    # # replace *both* light mode and dark mode emojis with B for blank.
+    # content = content.replace("⬛", "B")
+    # content = content.replace("⬜", "B")
+    # # yellow and green emojis are the same regardless of dark mode settings.
+    # content = content.replace("🟩", "G")
+    # content = content.replace("🟨", "Y")
+    # print(content)
+    # return None
 
 
 

@@ -152,8 +152,8 @@ async def respond_to_score_post(user, score_string, message):
 
 
 async def respond_to_wordle_post(content, author):
-    await parsing_stuff.digest_a_wordle_result(content, author)
-
+    response = await parsing_stuff.digest_a_wordle_result(content, author)
+    print(response)
 
 
 

@@ -182,6 +182,9 @@ async def digest_a_wordle_result(message, user):
         print(e)
         response = e
 
+    print("digested a wordle")
+    print(response)
+
     return response
 
 

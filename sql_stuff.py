@@ -597,10 +597,9 @@ async def check_shape_count(shape):
         .all()
     copies = []
     for row in uniques:
-        copies.append(f"{row.user} also got this at {row.board_number}!")
+        user = row.user.split("#")[0]
+        copies.append(f"{user}, on day {row.board_number}.")
 
-    if not copies:
-        copies = ["You are the first!"]
 
     session.close()
     return copies

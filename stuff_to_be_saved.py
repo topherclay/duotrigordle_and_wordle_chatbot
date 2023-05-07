@@ -158,5 +158,8 @@ class SingleWordle:
                 print("------------")
                 raise ValueError("How did you win without five greens as your last line?")
 
+    def __repr__(self):
+        return f"{self.user} board {self.board_number}"
+
 
 

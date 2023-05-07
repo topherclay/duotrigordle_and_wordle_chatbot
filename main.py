@@ -208,6 +208,9 @@ async def try_to_read_history(context):
             print(message.author)
             raise e
 
+        if is_success == "This was not added to the database due to a duplicate entry already existing.":
+            print(f"\t{index} already existed")
+            continue
 
         if is_success != "This was added to database.":
             print(f"\tfailed and trying again on {index}")

@@ -165,17 +165,19 @@ async def respond_to_wordle_post(content, author, message=None):
 
     is_success = await sql_stuff.commit_wordle_to_db(wordle)
 
-    user = str(message.author).split("#")[0]
-    embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
-    embed.set_footer(text=is_success)
 
-    copies = await sql_stuff.check_shape_count(wordle.shape)
 
-    if len(copies) > 1:
-        embed.add_field(name=f"Copies = {len(copies)} so far:", value="\n".join(copies), inline=False)
-
-        if message and is_success:
-            await message.channel.send(embed=embed)
+    # user = str(message.author).split("#")[0]
+    # embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
+    # embed.set_footer(text=is_success)
+    #
+    # copies = await sql_stuff.check_shape_count(wordle.shape)
+    #
+    # if len(copies) > 1:
+    #     embed.add_field(name=f"Copies = {len(copies)} so far:", value="\n".join(copies), inline=False)
+    #
+    #     if message and is_success:
+    #         await message.channel.send(embed=embed)
 
 
     return is_success
@@ -193,7 +195,7 @@ async def try_to_read_history(context):
     wordle_messages = [message for message in messages if message.content.startswith("Wordle ")]
 
     amount_of_wordle_only = len(wordle_messages)
-    print(f"found {amount_of_wordle_only} wordle messages")
+    print(f"\tfound {amount_of_wordle_only} wordle messages")
 
     for index, message in enumerate(wordle_messages):
         content = message.content
@@ -208,11 +210,11 @@ async def try_to_read_history(context):
 
 
         if is_success != "This was added to database.":
-            print(f"failed and trying again on {index}")
+            print(f"\tfailed and trying again on {index}")
             is_success = await respond_to_wordle_post(content, author, message)
 
         if is_success == "This was added to database.":
-            print(f"{index} was a success!")
+            print(f"\t{index} was a success!")
 
 
 def generate_help_message():

@@ -129,10 +129,10 @@ async def on_message(message):
     if message.content == "!test":
         await try_to_read_history(message)
         copies = await sql_stuff.find_most_popular_wordles()
-        user = str(message.author).split("#")[0]
-        embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
-        embed.add_field(name=f"{len(copies)}:", value="\n".join(copies), inline=False)
-        await message.channel.send(embed=embed)
+        # user = str(message.author).split("#")[0]
+        # embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
+        # embed.add_field(name=f"{len(copies)}:", value="\n".join(copies), inline=False)
+        # await message.channel.send(embed=embed)
 
 
 async def respond_to_score_post(user, score_string, message):
@@ -200,7 +200,7 @@ async def try_to_read_history(context):
         author = message.author
 
         try:
-            is_success = await respond_to_wordle_post(content, author)
+            is_success = await respond_to_wordle_post(content, author, message)
         except Exception as e:
             print(message.content)
             print(message.author)
@@ -209,7 +209,7 @@ async def try_to_read_history(context):
 
         if is_success != "This was added to database.":
             print(f"failed and trying again on {index}")
-            is_success = await respond_to_wordle_post(content, author)
+            is_success = await respond_to_wordle_post(content, author, message)
 
         if is_success == "This was added to database.":
             print(f"{index} was a success!")

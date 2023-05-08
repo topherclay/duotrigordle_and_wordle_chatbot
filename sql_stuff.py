@@ -596,7 +596,6 @@ def get_data_for_graphing():
     #
     # print(data)
 
-    # with fails
 
     data = {}
     for user in users:

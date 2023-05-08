@@ -585,26 +585,16 @@ def get_data_for_graphing():
     #     data[user] = users_data
 
 
-    # without fails
-
-    # data = {}
-    # for user in users:
-    #     users_data = session.query(WordleRow.board_number, WordleRow.guesses_til_win, WordleRow.is_a_won_game)\
-    #         .filter(WordleRow.user == user).all()
-    #     users_data = repr(users_data)
-    #     data[user] = users_data
-    #
-    # print(data)
-
-
     data = {}
     for user in users:
-        users_data = session.query(WordleRow.board_number, WordleRow.guesses_til_win)\
+        users_data = session.query(WordleRow.board_number, WordleRow.guesses_til_win, WordleRow.is_a_won_game)\
             .filter(WordleRow.user == user).all()
         users_data = repr(users_data)
         data[user] = users_data
 
     print(data)
+
+
 
 
 

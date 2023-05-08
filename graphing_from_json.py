@@ -156,15 +156,23 @@ def make_many_wordle_bar_graph(all_the_shit):
     for key in all_the_shit.keys():
         full_data = all_the_shit[key]
         scores = [item[1] for item in full_data]
+
+        # fig = figure(title=f"{key}",
+        #              x_axis_label="score",
+        #              y_axis_label="amount",
+        #              sizing_mode="stretch_both")
+
         fig = figure(title=f"{key}",
                      x_axis_label="score",
                      y_axis_label="amount",
-                     sizing_mode="stretch_both")
+                     width=400,
+                     height=400)
 
 
         x_slots = list(range(1,7))
         y_values = []
         for index in x_slots:
+            print(f"{key} scored {index} {scores.count(index)} times")
             y_values.append(scores.count(index))
 
 
@@ -180,16 +188,16 @@ def make_many_wordle_bar_graph(all_the_shit):
 
 
 
-        fig.yaxis.ticker.max_interval = 1
-        fig.yaxis.ticker.min_interval = 1
+        fig.yaxis.ticker.max_interval = 10
+        fig.yaxis.ticker.min_interval = 5
         fig.xaxis.ticker.max_interval = 10
         fig.xaxis.ticker.min_interval = 1
 
 
-        fig.x_range.start = 1
+        fig.x_range.start = 0
         fig.x_range.end = 7
         fig.y_range.end = 85
-        fig.y_range.start = 1
+        fig.y_range.start = 0
 
 
         show(fig)

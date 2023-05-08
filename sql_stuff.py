@@ -267,7 +267,7 @@ def get_streak_from_username(_username, winning=True):
 
 def get_all_usernames():
     session = Session()
-    users = session.query(GameRow.user).distinct().all()
+    users = session.query(WordleRow.user).distinct().all()
 
     usernames = [user[0] for user in users]
 

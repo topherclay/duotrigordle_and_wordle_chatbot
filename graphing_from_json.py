@@ -162,27 +162,29 @@ def make_many_wordle_bar_graph(all_the_shit):
         #              y_axis_label="amount",
         #              sizing_mode="stretch_both")
 
-        fig = figure(title=f"{key}",
-                     x_axis_label="score",
-                     y_axis_label="amount",
-                     width=400,
-                     height=400)
 
+
+        total_games = 0
 
         x_slots = list(range(1,7))
         y_values = []
         for index in x_slots:
             print(f"{key} scored {index} {scores.count(index)} times")
             y_values.append(scores.count(index))
+            total_games += scores.count(index)
 
-
-
+        fig = figure(title=f"{key.split('#')[0]}'s {total_games} games.",
+                     x_axis_label="score",
+                     y_axis_label="amount",
+                     width=400,
+                     height=800)
 
 
 
         print(f"{key} == {color_dict[key]}")
 
-        fig.vbar(x=x_slots, top=y_values, color=color_dict[key])
+        # fig.vbar(x=x_slots, top=y_values, color=color_dict[key])
+        fig.vbar(x=x_slots, top=y_values, color="blue")
 
 
 
@@ -209,7 +211,7 @@ def make_many_wordle_bar_graph(all_the_shit):
 with open("data_for_graph.json", "r") as file:
     data = json.load(file)
 
-colors = (color for color in ["green", "red", "magenta", "blue", "purple"])
+colors = (color for color in ["green", "red", "magenta", "blue", "purple", "pink", "red"])
 color_dict = {}
 for key, value in data.items():
     data[key] = ast.literal_eval(value)

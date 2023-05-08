@@ -593,6 +593,14 @@ def get_data_for_graphing():
 
     print(data)
 
+    # this is all the fails?
+    for user in users:
+        users_data = session.query(WordleRow.board_number, WordleRow.guesses_til_win, not WordleRow.is_a_won_game)\
+            .filter(WordleRow.user == user).all()
+        users_data = repr(users_data)
+        data[user] += users_data
+
+
     with open("data_for_graph.json", "w") as file:
         json.dump(data, file)
 

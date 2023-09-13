@@ -128,7 +128,7 @@ async def on_message(message):
 
     if message.content == "!test":
         await try_to_read_history(message)
-        copies = await sql_stuff.find_most_popular_wordles()
+        # copies = await sql_stuff.find_most_popular_wordles()
         # user = str(message.author).split("#")[0]
         # embed = discord.Embed(title=f"Hello {user}", color=discord.Color.blue())
         # embed.add_field(name=f"{len(copies)}:", value="\n".join(copies), inline=False)

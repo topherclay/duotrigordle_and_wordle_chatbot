@@ -576,13 +576,6 @@ def get_data_for_graphing():
     users = get_all_usernames()
     session = Session()
 
-    # this was for gordle and not wordle
-    # data = {}
-    # for user in users:
-    #     users_data = session.query(GameRow.board_number, GameRow.time, GameRow.guesses_til_win, GameRow.is_a_won_game)\
-    #         .filter(GameRow.user == user).all()
-    #     users_data = repr(users_data)
-    #     data[user] = users_data
 
 
     data = {}

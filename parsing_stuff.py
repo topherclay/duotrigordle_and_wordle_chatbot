@@ -196,7 +196,7 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
         percentage = str(percentage)
         left_half, right_half = percentage.split(".")
         if len(left_half) == 1:
-            percentage = left_half.zfill(2) + "." + right_half
+            percentage = left_half.zfill(2) + "." + right_half.zfill(2)
 
         percentages.append(percentage)
 

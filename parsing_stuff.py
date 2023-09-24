@@ -193,7 +193,10 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
     percentages = []
     for index, score in enumerate(wordle_stats):
         percentage = round(score / total_games * 100)
-        percentages.append(str(percentage))
+        percentage = str(percentage).zfill(2) + "%"
+        percentages.append(percentage)
+
+
     return percentages
 
 

@@ -625,7 +625,7 @@ async def wordle_personal_stats(_username):
     all_games = session.query(WordleRow) \
         .filter(WordleRow.user == _username).all()
 
-    return all_games
+    return all_games[0]
 
 
     # count_of_games_played = session.query(GameRow) \

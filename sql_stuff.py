@@ -634,8 +634,7 @@ async def wordle_personal_stats(_username):
             .filter(WordleRow.is_a_won_game).all()
         games_with_score.append(len(games))
 
-    lost_games = session.query(WordleRow).filter(WordleRow.user).filter(not WordleRow.is_a_won_game).all()
-    lost_games = len(lost_games)
+    lost_games = len([game for game in all_games if game.is_a_won_game is False])
     games_with_score.append(lost_games)
 
     return games_with_score

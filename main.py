@@ -116,7 +116,7 @@ async def on_message(message):
         _user = str(_user)
         result = await sql_stuff.wordle_personal_stats(_user)
         result = await parsing_stuff.turn_wordle_stats_into_percentages(result)
-        print(result)
+        result = await parsing_stuff.add_ticks(result)
         await message.channel.send(result)
 
 

@@ -197,7 +197,17 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
         percentages.append(percentage)
 
 
-    return percentages
+    full_string = f"Out of {total_games} games\n" \
+                  f"1/6 {percentages[0]}\n" \
+                  f"2/6 {percentages[1]}\n" \
+                  f"3/6 {percentages[2]}\n" \
+                  f"4/6 {percentages[3]}\n" \
+                  f"5/6 {percentages[4]}\n" \
+                  f"6/6 {percentages[5]}\n" \
+                  f"0/6 {percentages[6]}"
+
+
+    return full_string
 
 
 

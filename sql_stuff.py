@@ -627,7 +627,7 @@ async def wordle_personal_stats(_username):
 
 
     games_with_score = []
-    for score in range(1, 6):
+    for score in range(1, 7):
         games = session.query(WordleRow) \
             .filter(WordleRow.user == _username) \
             .filter(WordleRow.guesses_til_win == score) \

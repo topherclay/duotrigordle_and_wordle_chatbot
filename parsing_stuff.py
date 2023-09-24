@@ -193,17 +193,17 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
     percentages = []
     for index, score in enumerate(wordle_stats):
         percentage = round(score / total_games * 100, 2)
-        percentage = str(percentage).zfill(2) + "%"
+        percentage = str(percentage).zfill(2)
         percentages.append(percentage)
 
     full_string = f"Out of {total_games} games \n" \
-                  f"1/6 {percentages[0]:>5} {wordle_stats[0]}\n" \
-                  f"2/6 {percentages[1]:>5} {wordle_stats[1]}\n" \
-                  f"3/6 {percentages[2]:>5} {wordle_stats[2]}\n" \
-                  f"4/6 {percentages[3]:>5} {wordle_stats[3]}\n" \
-                  f"5/6 {percentages[4]:>5} {wordle_stats[4]}\n" \
-                  f"6/6 {percentages[5]:>5} {wordle_stats[5]}\n" \
-                  f"0/6 {percentages[6]:>5} {wordle_stats[6]}"
+                  f"1/6 {percentages[0]:>5}% {wordle_stats[0]:<3}\n" \
+                  f"2/6 {percentages[1]:>5}% {wordle_stats[1]:<3}\n" \
+                  f"3/6 {percentages[2]:>5}% {wordle_stats[2]:<3}\n" \
+                  f"4/6 {percentages[3]:>5}% {wordle_stats[3]:<3}\n" \
+                  f"5/6 {percentages[4]:>5}% {wordle_stats[4]:<3}\n" \
+                  f"6/6 {percentages[5]:>5}% {wordle_stats[5]:<3}\n" \
+                  f"0/6 {percentages[6]:>5}% {wordle_stats[6]:<3}"
     return full_string
 
 

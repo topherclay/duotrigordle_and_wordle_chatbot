@@ -193,7 +193,11 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
     percentages = []
     for index, score in enumerate(wordle_stats):
         percentage = round(score / total_games * 100, 2)
-        percentage = str(percentage).zfill(4)
+        percentage = str(percentage)
+        left_half, right_half = percentage.split(".")
+        if len(left_half) == 1:
+            percentage = left_half.zfill(2) + "." + right_half
+
         percentages.append(percentage)
 
     full_string = f"Out of {total_games} games \n" \

@@ -232,6 +232,7 @@ def make_many_wordle_bar_graph(all_the_shit):
 
         total_games = 0
 
+
         x_slots = list(range(0,7))
         y_values = []
         for index in x_slots:
@@ -246,7 +247,7 @@ def make_many_wordle_bar_graph(all_the_shit):
             y_values.append(scores.count(index))
             total_games += scores.count(index)
 
-        pprint(full_data)
+        # pprint(full_data)
         print(f"total adds up to {total_games}")
         print(f"length of data is {len(full_data)}")
 
@@ -296,8 +297,6 @@ with open("data_for_graph.json", "r") as file:
 new_data = {}
 for key in data.keys():
     if key.split("#")[1] in ["0", "9686", "4960"]:
-        if "toph" not in key:
-            continue
         new_data[key] = data[key]
 
 data = new_data
@@ -317,10 +316,10 @@ for key, value in data.items():
 
 
 
-print(data.keys())
 
 
 
-make_many_wordle_bar_graph(data)
+
+# make_many_wordle_bar_graph(data)
 make_time_line_graph(data)
 

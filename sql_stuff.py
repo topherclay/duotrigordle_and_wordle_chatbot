@@ -360,22 +360,6 @@ def all_personal_stats(_username):
 
 
 def display_one_stat_block(which_single_user):
-
-    # result = {"count_of_games": count_of_games_played,
-    #            "presumed_games_played": presumed_count,
-    #            "win_streak": streak_of_games_played,
-    #            "lose_streak": lose_streak,
-    #            "win_total": count_of_wins,
-    #            "lose_total": count_of_losses,
-    #            "presumed_loses": presumed_losses,
-    #            "presumed_win_percentage": presumed_percentage_wins,
-    #            "presumed_lose_percentage": presumed_percentage_lost,
-    #            "percentage_wins":  percentage_wins,
-    #            "percentage_lost": percentage_lost,
-    #            "user": user}
-
-
-
     try:
         stats: dict = all_personal_stats(which_single_user)
     except Exception as e:
@@ -633,6 +617,19 @@ async def find_most_popular_wordles():
 
     session.close()
     return copies
+
+
+
+async def wordle_personal_stats(_username):
+    session = Session()
+    all_games = session.query(WordleRow) \
+        .filter(WordleRow.user == _username).all()
+
+    return all_games
+
+
+    # count_of_games_played = session.query(GameRow) \
+    #     .filter(GameRow.user == user).all()
 
 
 

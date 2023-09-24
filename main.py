@@ -115,8 +115,11 @@ async def on_message(message):
         _user = message.author
         _user = str(_user)
         result = await sql_stuff.stat_me(_user)
-        result = parsing_stuff.add_ticks(result)
-        await message.channel.send(result)
+        result = await sql_stuff.wordle_personal_stats(_user)
+        # result = parsing_stuff.add_ticks(result)
+
+        print(result)
+        # await message.channel.send(result)
 
     if message.content == COMMAND_STRING["show all stats"]:
         result = await sql_stuff.stat_all()

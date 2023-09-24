@@ -188,7 +188,13 @@ async def digest_a_wordle_result(message, user):
 
 
 
-
+async def turn_wordle_stats_into_percentages(wordle_stats):
+    total_games = sum(wordle_stats)
+    percentages = []
+    for index, score in enumerate(wordle_stats):
+        percentage = round(score / total_games * 100)
+        percentages.append(str(percentage))
+    return percentages
 
 
 

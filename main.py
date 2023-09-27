@@ -116,9 +116,10 @@ async def on_message(message):
         _user = str(_user)
         stat_numbers = await sql_stuff.wordle_personal_stats(_user)
         stat_string = await parsing_stuff.turn_wordle_stats_into_percentages(stat_numbers)
-        result = parsing_stuff.add_ticks(stat_string)
         all_shapes, total_games = await sql_stuff.get_all_shapes_from_one_user(_user)
         block_stats = await parsing_stuff.get_block_stats_from_all_shapes(all_shapes, total_games)
+        result = stat_string + "\n" + block_stats
+        result = parsing_stuff.add_ticks(result)
         print(block_stats)
         await message.channel.send(result)
 

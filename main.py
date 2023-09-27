@@ -114,9 +114,10 @@ async def on_message(message):
     if message.content == COMMAND_STRING["show stats"]:
         _user = message.author
         _user = str(_user)
-        result = await sql_stuff.wordle_personal_stats(_user)
-        result = await parsing_stuff.turn_wordle_stats_into_percentages(result)
-        result = parsing_stuff.add_ticks(result)
+        stat_numbers = await sql_stuff.wordle_personal_stats(_user)
+        stat_string = await parsing_stuff.turn_wordle_stats_into_percentages(stat_numbers)
+        result = parsing_stuff.add_ticks(stat_string)
+        await sql_stuff.get_all_shapes_from_one_user(_user)
         await message.channel.send(result)
 
 

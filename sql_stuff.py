@@ -556,11 +556,8 @@ def compare_latest_game_to_personal_ranks(_username):
 def get_data_for_graphing():
     print("getting data from graph")
 
-
     users = get_all_usernames()
     session = Session()
-
-
 
     data = {}
     for user in users:
@@ -570,10 +567,6 @@ def get_data_for_graphing():
         data[user] = users_data
 
     print(data)
-
-
-
-
 
     with open("data_for_graph.json", "w") as file:
         json.dump(data, file)
@@ -594,6 +587,20 @@ async def check_shape_count(shape):
         copies = ["None"]
     session.close()
     return copies
+
+
+async def get_all_shapes_from_one_user(_username):
+    session = Session()
+    shapes = session.query(WordleRow.shape) \
+        .filter(WordleRow.user == _username) \
+        .all()
+
+    all_shapes_together = ""
+
+    for shape in shapes:
+        print(shape)
+
+
 
 
 

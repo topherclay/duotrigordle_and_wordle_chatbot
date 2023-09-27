@@ -201,9 +201,6 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
             right_half += "0"
         percentage = left_half + "." + right_half
 
-
-
-
         percentages.append(percentage)
 
     full_string = f"Out of {total_games} games \n" \

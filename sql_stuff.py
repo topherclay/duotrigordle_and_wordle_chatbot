@@ -596,10 +596,12 @@ async def get_all_shapes_from_one_user(_username):
         .all()
 
     all_shapes_together = ""
+    total_games = len(shapes)
 
     for shape in shapes:
-        print(shape)
+        all_shapes_together += (shape[0])
 
+    return all_shapes_together, total_games
 
 
 

@@ -215,6 +215,16 @@ async def turn_wordle_stats_into_percentages(wordle_stats):
 
 
 
+async def get_block_stats_from_all_shapes(all_shapes, total_games):
+    block_stats = ""
+    for block in ["B", "Y", "G"]:
+        amount = all_shapes.count(block)
+        percentage = total_games / amount * 100
+        percentage = round(percentage, 2)
+        block_stats += f"{block} {amount}, {percentage} per game.\n"
+    return block_stats
+
+
 if __name__ == "__main__":
     # 05:05.37
     # 305.37

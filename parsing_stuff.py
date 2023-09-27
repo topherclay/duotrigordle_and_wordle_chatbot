@@ -219,11 +219,11 @@ async def get_block_stats_from_all_shapes(all_shapes, total_games):
     block_stats = ""
     for block in ["B", "Y", "G"]:
         amount = all_shapes.count(block)
-        percentage = total_games / amount * 100
-        percentage = round(percentage, 2)
+        average = total_games / amount
+        average = round(average, 2)
         block_emoji = {"B": "⬛", "Y": "🟨", "G": "🟩",}
 
-        block_stats += f"{block_emoji[block]} {amount}, {percentage} per game.\n"
+        block_stats += f"{block_emoji[block]} {amount:>6}, {average:<6} per game.\n"
     return block_stats
 
 

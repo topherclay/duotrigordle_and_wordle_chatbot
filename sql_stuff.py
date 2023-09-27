@@ -620,7 +620,7 @@ async def find_most_popular_wordles():
 
 
 
-async def wordle_personal_stats(_username):
+async def wordle_personal_stats(_username) -> list:
     session = Session()
     all_games = session.query(WordleRow) \
         .filter(WordleRow.user == _username).all()

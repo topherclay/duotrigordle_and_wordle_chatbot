@@ -223,7 +223,7 @@ async def get_block_stats_from_all_shapes(all_shapes, total_games):
         average = round(average, 2)
         block_emoji = {"B": "⬛", "Y": "🟨", "G": "🟩",}
 
-        block_stats += f"{block_emoji[block]} {average} game. {amount} \n"
+        block_stats += f"{block_emoji[block]} per game: {average} {amount} \n"
     return block_stats
 
 

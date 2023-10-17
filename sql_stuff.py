@@ -572,6 +572,24 @@ def get_data_for_graphing():
         json.dump(data, file)
 
 
+
+def get_three_turn_wins_for_shape_drawing():
+    print("getting three turn wins")
+
+
+    session = Session()
+
+
+    shapes = session.query(WordleRow.shape, WordleRow.shape)\
+        .filter(WordleRow.guesses_til_win==3).all()
+
+    data = shapes
+
+
+    with open("three_turn_wins.json", "w") as file:
+        json.dump(data, file)
+
+
 async def check_shape_count(shape):
     session = Session()
     uniques = session.query(WordleRow.board_number, WordleRow.user) \

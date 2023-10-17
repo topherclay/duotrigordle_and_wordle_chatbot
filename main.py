@@ -176,7 +176,7 @@ async def try_to_read_history(context):
     print("i will try to read history now.")
 
     # none will read all.
-    amount_of_messages_to_read = 50
+    amount_of_messages_to_read = None
     messages = await context.channel.history(limit=amount_of_messages_to_read).flatten()
 
     amount_found = len(messages)

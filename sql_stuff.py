@@ -580,8 +580,11 @@ def get_three_turn_wins_for_shape_drawing():
     session = Session()
 
 
-    shapes = session.query(WordleRow.shape, WordleRow.shape)\
-        .filter(WordleRow.guesses_til_win==3).all()
+    shapes = session.query(WordleRow.shape, WordleRow.user)\
+        .filter(WordleRow.guesses_til_win == 3).all()
+
+
+    shapes = [(shape[0], shape[1]) for shape in shapes]
 
     data = shapes
 

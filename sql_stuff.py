@@ -588,6 +588,7 @@ def get_three_turn_wins_for_shape_drawing():
 
     with open("three_turn_wins.json", "w") as file:
         json.dump(data, file)
+    print("done making three_turn_win file")
 
 
 async def check_shape_count(shape):
@@ -687,8 +688,8 @@ if __name__ == "__main__":
 
     # user = get_user_from_string("toph")
     # compare_latest_game_to_personal_ranks(user)
-    print(get_data_for_graphing())
-
+    # print(get_data_for_graphing())
+    get_three_turn_wins_for_shape_drawing()
 
 
 

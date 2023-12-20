@@ -115,7 +115,7 @@ async def on_message(message):
         return
 
     if message.content == COMMAND_STRING["show stats"]:
-        logger.info(f"showing stats to {message.author}")
+        logger.info(f"{message.author} asked for stats.")
         _user = message.author
         _user = str(_user)
         stat_numbers = await sql_stuff.wordle_personal_stats(_user)
@@ -126,7 +126,7 @@ async def on_message(message):
         result = parsing_stuff.add_ticks(result)
         print(block_stats)
         await message.channel.send(result)
-
+        logger.info(f"sent this result:\n{result}")
 
 
     if message.content == COMMAND_STRING["show all stats"]:

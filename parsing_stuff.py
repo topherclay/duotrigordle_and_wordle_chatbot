@@ -3,7 +3,7 @@ import datetime
 # single_symbol = "🟥"
 import sql_stuff
 import stuff_to_be_saved
-
+from loguru import logger
 
 def get_scores_only(original_string):
     abridged = None
@@ -143,6 +143,7 @@ def add_turn_labels(non_labelled: str):
 
 def add_ticks(message):
     message = "```\n" + message + "```"
+    logger.info(f"added ticks lol")
     return message
 
 

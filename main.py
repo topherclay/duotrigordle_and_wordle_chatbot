@@ -246,6 +246,7 @@ def set_up_logger():
 
 
 if __name__ == "__main__":
-
+    set_up_logger()
     HELP_MESSAGE = generate_help_message()
     client.run(client_token)
+

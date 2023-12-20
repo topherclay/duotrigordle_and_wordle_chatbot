@@ -54,6 +54,7 @@ Base.metadata.create_all(engine)
 async def commit_wordle_to_db(wordle: SingleWordle):
     session = Session()
     resulting_string = ""
+    logger.info("A wordle is being added to the database.")
     try:
         to_be_added = WordleRow(user=wordle.user,
                                 is_a_won_game=wordle.is_a_won_game,
@@ -64,10 +65,12 @@ async def commit_wordle_to_db(wordle: SingleWordle):
         session.add(to_be_added)
         session.commit()
         resulting_string = "This was added to database."
+        logger.info("A wordle was successfully added to the database.")
     except sqlalchemy.exc.IntegrityError:
         resulting_string = "This was not added to the database due to a duplicate entry already existing."
+        logger.error("This was not added to the database due to a duplicate entry already existing.")
     except Exception as e:
-        print(e)
+        logger.error(f"{e}")
         resulting_string = str(type(e))
     session.close()
 

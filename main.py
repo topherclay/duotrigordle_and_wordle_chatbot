@@ -115,6 +115,7 @@ async def on_message(message):
         return
 
     if message.content == COMMAND_STRING["show stats"]:
+        logger.info(f"showing stats to {message.author}")
         _user = message.author
         _user = str(_user)
         stat_numbers = await sql_stuff.wordle_personal_stats(_user)
@@ -237,7 +238,7 @@ def generate_help_message():
 
 def set_up_logger():
     logger.remove()
-    logger.add(sys.stderr, level="INFO")
+    logger.add(sys.stderr, level="INFO", format="{time}| {message}")
     logger.add("gordle_logs.log", rotation="1 day", retention="7 days")
 
 

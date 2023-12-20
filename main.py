@@ -6,14 +6,14 @@ import stuff_to_be_saved
 
 import sql_stuff
 
+from loguru import logger
 
+
+# this stuff has to stay outside the name==main thing in order for the @client wrapper to work.
 load_dotenv()
-
 client_token = os.getenv("CLIENT_TOKEN")
-
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
-
 COMMAND_STRING = {
     "top by rank": "!top",
     "top by speed": "!speed",
@@ -232,5 +232,7 @@ def generate_help_message():
     return message
 
 
-HELP_MESSAGE = generate_help_message()
-client.run(client_token)
+if __name__ == "__main__":
+
+    HELP_MESSAGE = generate_help_message()
+    client.run(client_token)

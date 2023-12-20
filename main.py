@@ -238,7 +238,7 @@ def generate_help_message():
 
 def set_up_logger():
     logger.remove()
-    logger.add(sys.stderr, level="INFO", format="{time}| {message}")
+    logger.add(sys.stderr, level="INFO")
     logger.add("gordle_logs.log", rotation="1 day", retention="7 days")
 
 

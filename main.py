@@ -7,6 +7,7 @@ import stuff_to_be_saved
 import sql_stuff
 
 from loguru import logger
+import sys
 
 
 # this stuff has to stay outside the name==main thing in order for the @client wrapper to work.
@@ -29,6 +30,7 @@ COMMAND_STRING = {
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
+    logger.info("We have logged in to discord as {client.user}")
 
 
 @client.event
@@ -230,6 +232,17 @@ def generate_help_message():
         assert command in message, f"{command} does not have a !help description!"
 
     return message
+
+
+def set_up_logger():
+    logger.remove()
+    logger.add(sys.stderr, level="DEBUG")
+    logger.add("gordle_logs.log", rotation="1 day", retention="7 days")
+
+
+
+
+
 
 
 if __name__ == "__main__":

@@ -31,6 +31,7 @@ COMMAND_STRING = {
 async def on_ready():
     print(f'We have logged in as {client.user}')
     logger.info("We have logged in to discord as {client.user}")
+    logger.debug("This one only goes in the logs.")
 
 
 @client.event
@@ -236,7 +237,7 @@ def generate_help_message():
 
 def set_up_logger():
     logger.remove()
-    logger.add(sys.stderr, level="DEBUG")
+    logger.add(sys.stderr, level="INFO")
     logger.add("gordle_logs.log", rotation="1 day", retention="7 days")
 
 

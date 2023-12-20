@@ -11,6 +11,8 @@ from stuff_to_be_saved import SingleGame, SingleWordle
 
 import json
 
+from loguru import logger
+
 Base = declarative_base()
 
 load_dotenv()

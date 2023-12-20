@@ -168,7 +168,6 @@ async def respond_to_wordle_post(content, author, message=None):
     wordle = await parsing_stuff.digest_a_wordle_result(content, author)
     logger.info(f"{author} posted this wordle.\n{wordle}")
     is_success = await sql_stuff.commit_wordle_to_db(wordle)
-
     return is_success
 
 

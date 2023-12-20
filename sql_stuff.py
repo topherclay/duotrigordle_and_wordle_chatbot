@@ -68,7 +68,7 @@ async def commit_wordle_to_db(wordle: SingleWordle):
         logger.info("A wordle was successfully added to the database.")
     except sqlalchemy.exc.IntegrityError:
         resulting_string = "This was not added to the database due to a duplicate entry already existing."
-        logger.error("This was not added to the database due to a duplicate entry already existing.")
+        logger.error("A wordle was not added to the database due to a duplicate entry already existing.")
     except Exception as e:
         logger.error(f"{e}")
         resulting_string = str(type(e))

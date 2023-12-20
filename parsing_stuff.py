@@ -143,7 +143,6 @@ def add_turn_labels(non_labelled: str):
 
 def add_ticks(message):
     message = "```\n" + message + "```"
-    logger.info(f"added ticks lol")
     return message
 
 

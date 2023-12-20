@@ -29,9 +29,8 @@ COMMAND_STRING = {
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
-    logger.info("We have logged in to discord as {client.user}")
-    logger.debug("This one only goes in the logs.")
+    logger.info(f"We have logged in to discord as {client.user}")
+
 
 
 @client.event
@@ -115,7 +114,7 @@ async def on_message(message):
         return
 
     if message.content == COMMAND_STRING["show stats"]:
-        logger.info(f"{message.author} asked for stats.")
+        logger.info(f"{message.author} asked for stats via {COMMAND_STRING['show stats']}.")
         _user = message.author
         _user = str(_user)
         stat_numbers = await sql_stuff.wordle_personal_stats(_user)
@@ -124,7 +123,6 @@ async def on_message(message):
         block_stats = await parsing_stuff.get_block_stats_from_all_shapes(all_shapes, total_games)
         result = stat_string + "\n" + block_stats
         result = parsing_stuff.add_ticks(result)
-        print(block_stats)
         await message.channel.send(result)
         logger.info(f"sent this result:\n{result}")
 
